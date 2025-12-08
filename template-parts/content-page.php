@@ -12,7 +12,7 @@
     
     <?php if (has_post_thumbnail()) : ?>
         <div class="entry-thumbnail mb-8 rounded-lg overflow-hidden border border-slate-700">
-            <?php the_post_thumbnail('large', array('class' => 'w-full h-auto')); ?>
+            <?php the_post_thumbnail('large', array('class' => 'w-full h-auto parallax')); ?>
         </div>
     <?php endif; ?>
     
@@ -26,20 +26,5 @@
         ));
         ?>
     </div>
-    
-    <?php if (get_edit_post_link()) : ?>
-        <footer class="entry-footer mt-8 pt-8 border-t border-slate-700">
-            <?php
-            edit_post_link(
-                sprintf(
-                    __('Edit %s', 'stargazers'),
-                    the_title('<span class="screen-reader-text">"', '"</span>', false)
-                ),
-                '<span class="edit-link text-cyan-400 hover:text-cyan-300">',
-                '</span>'
-            );
-            ?>
-        </footer>
-    <?php endif; ?>
     
 </article>

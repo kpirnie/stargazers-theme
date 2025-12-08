@@ -39,7 +39,7 @@ function stargazers_enqueue_assets() {
     wp_enqueue_style('stargazers-tailwind', get_template_directory_uri() . '/assets/css/main.css', array(), '1.0.0');
     
     // Main JS
-    wp_enqueue_script('stargazers-scripts', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
+    wp_enqueue_script('stargazers-scripts', get_template_directory_uri() . '/assets/js/theme.js', array(), '1.0.0', true);
     
     // Comments
     if (is_singular() && comments_open() && get_option('thread_comments')) {
