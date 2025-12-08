@@ -1,0 +1,248 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply font-body;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-heading;
+    }
+
+    /* Fix for navigation dropdown z-index */
+    #site-navigation {
+        position: relative;
+        z-index: 50;
+    }
+
+    #site-navigation .submenu {
+        z-index: 100;
+    }
+
+    /* Remove list styling from pagination */
+    .pagination .nav-links {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+    }
+
+    .pagination .page-numbers {
+        list-style: none;
+    }
+
+    /* WordPress Core Styles */
+    .alignleft {
+        @apply float-left mr-6 mb-4;
+    }
+
+    .alignright {
+        @apply float-right ml-6 mb-4;
+    }
+
+    .aligncenter {
+        @apply mx-auto block;
+    }
+
+    .wp-caption {
+        @apply max-w-full;
+    }
+
+    .wp-caption-text {
+        @apply text-sm text-slate-400 mt-2 text-center;
+    }
+
+    /* Gutenberg Blocks */
+    .wp-block-image {
+        @apply mb-6;
+    }
+
+    .wp-block-quote {
+        @apply border-l-4 border-cyan-500 pl-6 my-6 italic text-slate-300;
+    }
+
+    /* Comments */
+    .comment-list {
+        @apply space-y-6 mt-8;
+    }
+
+    .comment-body {
+        @apply bg-slate-800 rounded-lg p-6 border border-slate-700;
+    }
+
+    .comment-author {
+        @apply font-semibold text-cyan-400 mb-2;
+    }
+
+    .comment-meta {
+        @apply text-sm text-slate-400 mb-4;
+    }
+
+    .comment-content {
+        @apply prose prose-invert prose-slate;
+    }
+
+    .comment-reply-link {
+        @apply inline-block mt-4 text-cyan-400 hover:text-cyan-300 transition-colors;
+    }
+
+    .children {
+        @apply ml-8 mt-6 space-y-6;
+    }
+
+    /* Comment Form */
+    .comment-form {
+        @apply mt-8 bg-slate-800 rounded-lg p-6 border border-slate-700;
+    }
+
+    .comment-form label {
+        @apply block text-slate-300 mb-2;
+    }
+
+    .comment-form input[type="text"],
+    .comment-form input[type="email"],
+    .comment-form input[type="url"],
+    .comment-form textarea {
+        @apply w-full px-4 py-2 bg-slate-900 border border-slate-600 rounded-lg text-slate-200 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500;
+    }
+
+    .comment-form textarea {
+        @apply min-h-[150px];
+    }
+
+    .comment-form input[type="submit"] {
+        @apply px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg transition-colors cursor-pointer;
+    }
+
+    /* Search Form */
+    .search-form {
+        @apply flex gap-2;
+    }
+
+    .search-form label {
+        @apply flex-grow;
+    }
+
+    .search-form input[type="search"] {
+        @apply w-full px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-slate-200 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500;
+    }
+
+    .search-form input[type="submit"] {
+        @apply px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg transition-colors cursor-pointer;
+    }
+}
+
+@layer components {
+
+    /* Custom Prose Styles for Dark Theme */
+    .prose-slate {
+        @apply text-slate-200;
+    }
+
+    .prose-slate a {
+        @apply text-cyan-400 hover:text-cyan-300 no-underline transition-colors;
+    }
+
+    .prose-slate strong {
+        @apply text-slate-100 font-semibold;
+    }
+
+    .prose-slate h1,
+    .prose-slate h2,
+    .prose-slate h3,
+    .prose-slate h4,
+    .prose-slate h5,
+    .prose-slate h6 {
+        @apply text-cyan-400 font-heading;
+    }
+
+    .prose-slate code {
+        @apply bg-slate-800 text-cyan-300 px-2 py-1 rounded;
+    }
+
+    .prose-slate pre {
+        @apply bg-slate-800 border border-slate-700 rounded-lg;
+    }
+
+    .prose-slate blockquote {
+        @apply border-l-4 border-cyan-500 text-slate-300;
+    }
+
+    .prose-slate hr {
+        @apply border-slate-700;
+    }
+
+    .prose-slate table {
+        @apply border border-slate-700;
+    }
+
+    .prose-slate thead {
+        @apply bg-slate-800;
+    }
+
+    .prose-slate th {
+        @apply text-cyan-400 border-b border-slate-700;
+    }
+
+    .prose-slate td {
+        @apply border-b border-slate-700;
+    }
+
+    /* Yoast Breadcrumbs Styling */
+    #breadcrumbs {
+        @apply text-slate-400;
+    }
+
+    #breadcrumbs a {
+        @apply text-cyan-400 hover:text-cyan-300 transition-colors;
+    }
+
+    #breadcrumbs span {
+        @apply mx-2;
+    }
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Screen reader text */
+.screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute !important;
+    width: 1px;
+    word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+    background-color: #f1f1f1;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    clip: auto !important;
+    clip-path: none;
+    color: #21759b;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
+}

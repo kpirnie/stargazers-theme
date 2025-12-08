@@ -1,0 +1,22 @@
+{
+  "name": "sgu",
+  "version": "1.0.0",
+  "description": "A dark astronomy-themed WordPress theme with Tailwind CSS",
+  "scripts": {
+    "build": "npx tailwindcss -i ./assets/css/input.css -o ./assets/css/main.css --minify",
+    "watch": "npx tailwindcss -i ./assets/css/input.css -o ./assets/css/main.css --watch"
+  },
+  "keywords": [
+    "wordpress",
+    "theme",
+    "tailwind",
+    "astronomy",
+    "dark-theme"
+  ],
+  "author": "Kevin Pirnie",
+  "license": "GPL-2.0-or-later",
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.10",
+    "tailwindcss": "^3.4.0"
+  }
+}
