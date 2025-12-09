@@ -9,6 +9,11 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php wp_head(); ?>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/wp-content/themes/sgu/assets/stargazers_us-favicon.svg">
+    <link rel="alternate icon" type="image/webp" href="/wp-content/themes/sgu/assets/stargazers_us-favicon.webp">
+    <link rel="apple-touch-icon" href="/wp-content/themes/sgu/assets/stargazers_us-favicon.webp">
 </head>
 
 <body <?php body_class('bg-slate-900 text-slate-200'); ?>>
@@ -22,25 +27,12 @@
                 
                 <!-- Logo/Site Title -->
                 <div class="site-branding">
-                    <?php if (has_custom_logo()) : ?>
-                        <div class="custom-logo">
-                            <?php the_custom_logo(); ?>
-                        </div>
-                    <?php else : ?>
-                        <h1 class="site-title text-2xl font-heading font-bold text-cyan-400">
-                            <a href="<?php echo esc_url(home_url('/')); ?>" class="hover:text-cyan-300 transition-colors">
-                                <?php bloginfo('name'); ?>
-                            </a>
-                        </h1>
+                    <a href="<?php echo home_url('/'); ?>" class="header-logo">
                         <?php
-                        $description = get_bloginfo('description', 'display');
-                        if ($description || is_customize_preview()) :
+                            // get the SVG content for my logo
+                            echo file_get_contents( ABSPATH . '/wp-content/themes/sgu/assets/stargazers_us-logo.svg' );
                         ?>
-                            <p class="site-description text-sm text-slate-400 mt-1">
-                                <?php echo $description; ?>
-                            </p>
-                        <?php endif; ?>
-                    <?php endif; ?>
+                    </a>
                 </div>
                 
                 <!-- Mobile Menu Toggle -->

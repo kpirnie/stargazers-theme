@@ -321,3 +321,61 @@ html {
     height: 350px !important;
     max-height: 350px !important;
 }
+
+.header-logo svg {
+    height: 100px;
+}
+
+.header-logo svg g.star,
+.header-logo svg g.gazers {
+    fill: #fff !important;
+}
+
+/* Scroll to Top Button */
+#scroll-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #185e98 0%, #0e3759 100%);
+    border: 2px solid #77aad4;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(14, 55, 89, 0.4);
+}
+
+#scroll-to-top:hover {
+    background: linear-gradient(135deg, #77aad4 0%, #185e98 100%);
+    transform: translateY(0) scale(1.1);
+    box-shadow: 0 6px 20px rgba(119, 170, 212, 0.5);
+}
+
+#scroll-to-top:active {
+    transform: translateY(0) scale(0.95);
+}
+
+#scroll-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    #scroll-to-top {
+        bottom: 1rem;
+        right: 1rem;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
