@@ -6,6 +6,23 @@ module.exports = {
     './templates/**/*.php',
     './assets/js/**/*.js',
   ],
+  safelist: [
+    {
+      pattern: /^(mt|mb|pt|pb|px|py|mx|my)-/,  // All margin/padding classes
+    },
+    {
+      pattern: /^text-(left|center|right|justify)/,  // Text alignment
+    },
+    {
+      pattern: /^bg-(slate|cyan|gray)-/,  // Background colors
+    },
+    {
+      pattern: /^border(-slate|-cyan|-gray)?-?/,  // Borders
+    },
+    {
+      pattern: /^rounded(-lg|-xl)?/,  // Rounded corners
+    },
+  ],
   theme: {
     extend: {
       colors: {
