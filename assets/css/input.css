@@ -314,6 +314,12 @@ html {
     display: block;
 }
 
+.parallax-container {
+    height: 350px !important;
+    width: 350px;
+    /* From your inline style */
+}
+
 .parallax-container,
 .entry-thumbnail:has(.parallax) {
     overflow: hidden !important;
@@ -357,7 +363,6 @@ html {
 #scroll-to-top:hover {
     background: linear-gradient(135deg, #77aad4 0%, #185e98 100%);
     transform: translateY(0) scale(1.1);
-    box-shadow: 0 6px 20px rgba(119, 170, 212, 0.5);
 }
 
 #scroll-to-top:active {
