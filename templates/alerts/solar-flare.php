@@ -16,7 +16,7 @@ if( $show_paging && in_array( $paging_location, ['top', 'both'] ) ) {
     $out[] = SGU_Static::cpt_pagination( $max_pages, $paged );
 }
 
-$out[] = '<div uk-grid class="uk-child-width-1-2@s">';
+$out[] = '<div class="grid grid-cols-1 md:grid-cols-2 gap-6">';
 
 // loop the results
 foreach( $data -> posts as $flare ) {
@@ -24,47 +24,52 @@ foreach( $data -> posts as $flare ) {
     // setup the data to be displayed
     $title = esc_html( $flare -> post_title );
     $flare_data = maybe_unserialize( $flare -> post_content );
-    $fbegin = esc_html( date( 'r', strtotime( $flare_data -> begin ) ) );
-    $fend = esc_html( date( 'r', strtotime( $flare_data -> end ) ) );
-    $fpeak = esc_html( date( 'r', strtotime( $flare_data -> peak ) ) );
-    $fclass = esc_html( $flare_data -> class );
-    $fsource = esc_html( $flare_data -> source );
-    $fregion = esc_html( $flare_data -> region );
+
+    $fbegin = esc_html( date( 'r', strtotime( $flare_data['beginTime'] ) ) );
+    $fend = esc_html( date( 'r', strtotime( $flare_data['endTime'] ) ) );
+    $fpeak = esc_html( date( 'r', strtotime( $flare_data['peakTime'] ) ) );
+    $fclass = esc_html( $flare_data['classType'] );
+    $fsource = esc_html( $flare_data['sourceLocation'] );
+    $fregion = esc_html( $flare_data['activeRegionNum'] );
     
     // build instruments
     $finstruments = [];
-    $finstruments[] = '<a class="uk-accordion-title" href="#">Instruments</a>';
-    $finstruments[] = '<div class="uk-accordion-content"><ul class="uk-list uk-list-disc">';
-    foreach( $flare_data -> instruments as $inst ) {
+    $finstruments[] = '<ul class="list-disc list-inside">';
+    foreach( $flare_data['instruments'] as $inst ) {
         $name = esc_html( $inst['displayName'] );
         $finstruments[] = "<li>$name</li>";
     }
-    $finstruments[] = '</ul></div>';
+    $finstruments[] = '</ul>';
     $finstruments = implode( '', $finstruments );
 
-    $flink = esc_url( $flare_data -> link );
+    $flink = esc_url( $flare_data['link'] );
 
     // create the card
     $out[] = <<<HTML
-    <div class="uk-card-small" uk-card>
-        <div class="uk-card-header alert-title">
-            <h3 class="uk-card-title">$title</h3>
+    <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
+        <div class="bg-slate-900 px-6 py-4 border-b border-slate-700">
+            <h3 class="text-xl font-heading font-bold text-cyan-400">$title</h3>
         </div>
-        <div class="uk-card-body">
-            <ul class="uk-list uk-list-disc">
-                <li><strong>Begin: </strong>$fbegin</li>
-                <li><strong>End: </strong>$fend</li>
-                <li><strong>Peak: </strong>$fpeak</li>
-                <li><strong>Class: </strong>$fclass</li>
-                <li><strong>Source: </strong>$fsource</li>
-                <li><strong>Region: </strong>$fregion</li>
-                <li>
-                    <ul uk-accordion>
-                        <li>$finstruments</li>
-                    </ul>
-                </li>
+        <div class="p-6">
+            <ul class="space-y-2 text-slate-300">
+                <li><strong class="text-slate-200">Begin:</strong> $fbegin</li>
+                <li><strong class="text-slate-200">End:</strong> $fend</li>
+                <li><strong class="text-slate-200">Peak:</strong> $fpeak</li>
+                <li><strong class="text-slate-200">Class:</strong> $fclass</li>
+                <li><strong class="text-slate-200">Source:</strong> $fsource</li>
+                <li><strong class="text-slate-200">Region:</strong> $fregion</li>
             </ul>
-            <a class="uk-button uk-button-secondary uk-align-right" href="$flink" target="_blank">More Info</a>
+            <div class="mt-4">
+                <ul>
+                    <li>
+                        <a class="" href="#">Instruments</a>
+                        <div class="">
+                            $finstruments
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <a class="inline-block mt-6 px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg transition-colors float-right" href="$flink" target="_blank">More Info</a>
         </div>
     </div>
     HTML;

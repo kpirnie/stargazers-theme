@@ -7,8 +7,8 @@ APP_USER=`stat -c '%U' $PWD`;
 chown -R $APP_USER:$APP_USER $PWD*;
 
 # reset permissions first
-find $PWD -type d -exec chmod 700 {} \;
-find $PWD -type f -exec chmod 600 {} \;
+find $PWD -type d -exec chmod 755 {} \;
+find $PWD -type f -exec chmod 644 {} \;
 chmod +x refresh.sh;
 
 # make sure composer will not throw up on us...
@@ -21,10 +21,11 @@ export COMPOSER_ALLOW_SUPERUSER=1;
 #composer dumpautoload -o -n;
 
 # Reinstall node_modules with correct permissions
+#rm -rf $PWD/node_modules > /dev/null 2>&1 && npm install > /dev/null 2>&1 && npx update-browserslist-db@latest > /dev/null 2>&1
 rm -rf $PWD/node_modules && npm install && npx update-browserslist-db@latest
 
 # now refresh NPM
-npm run build;
+npm run build
 
 # just inn case php is caching
 service php8.4-fpm restart && service nginx reload

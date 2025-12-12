@@ -4,13 +4,13 @@
 
 // UIKit3 Accordion-style animation helper
 export function slideToggle(element, duration = 300) {
+
     if (element.style.display === 'none' || !element.style.display || element.offsetHeight === 0) {
         // Slide down
         element.style.display = 'block';
         element.style.height = '0';
         element.style.overflow = 'hidden';
 
-        // Get the actual height AFTER setting display block
         const height = element.scrollHeight;
 
         element.style.transition = `height ${duration}ms cubic-bezier(0.4, 0, 0.2, 1)`;
