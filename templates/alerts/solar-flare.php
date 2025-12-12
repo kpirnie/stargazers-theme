@@ -23,7 +23,7 @@ foreach( $data -> posts as $flare ) {
 
     // setup the data to be displayed
     $title = esc_html( $flare -> post_title );
-    $flare_data = maybe_unserialize( $flare -> post_content );
+    $flare_data = ( array ) maybe_unserialize( $flare -> post_content );
 
     $fbegin = esc_html( date( 'r', strtotime( $flare_data['beginTime'] ) ) );
     $fend = esc_html( date( 'r', strtotime( $flare_data['endTime'] ) ) );
@@ -34,7 +34,7 @@ foreach( $data -> posts as $flare ) {
     
     // build instruments
     $finstruments = [];
-    $finstruments[] = '<ul class="list-disc list-inside">';
+    $finstruments[] = '<ul class="list-disc list-inside pl-4">';
     foreach( $flare_data['instruments'] as $inst ) {
         $name = esc_html( $inst['displayName'] );
         $finstruments[] = "<li>$name</li>";
@@ -44,6 +44,9 @@ foreach( $data -> posts as $flare ) {
 
     $flink = esc_url( $flare_data['link'] );
 
+    // unique ID for accordion
+    $accordion_id = 'accordion-' . $flare -> ID;
+
     // create the card
     $out[] = <<<HTML
     <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
@@ -51,7 +54,7 @@ foreach( $data -> posts as $flare ) {
             <h3 class="text-xl font-heading font-bold text-cyan-400">$title</h3>
         </div>
         <div class="p-6">
-            <ul class="space-y-2 text-slate-300">
+            <ul class="space-y-2 text-slate-300 mb-4">
                 <li><strong class="text-slate-200">Begin:</strong> $fbegin</li>
                 <li><strong class="text-slate-200">End:</strong> $fend</li>
                 <li><strong class="text-slate-200">Peak:</strong> $fpeak</li>
@@ -59,17 +62,21 @@ foreach( $data -> posts as $flare ) {
                 <li><strong class="text-slate-200">Source:</strong> $fsource</li>
                 <li><strong class="text-slate-200">Region:</strong> $fregion</li>
             </ul>
-            <div class="mt-4">
-                <ul>
-                    <li>
-                        <a class="" href="#">Instruments</a>
-                        <div class="">
-                            $finstruments
-                        </div>
-                    </li>
-                </ul>
+            <div class="border border-slate-700 rounded-lg overflow-hidden">
+                <button 
+                    class="w-full px-4 py-3 bg-slate-900 text-cyan-400 font-semibold text-left flex justify-between items-center hover:bg-slate-800 transition-colors"
+                    data-accordion-trigger="$accordion_id">
+                    <span>Instruments</span>
+                    <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div id="$accordion_id" class="hidden px-4 py-3 bg-slate-800 text-slate-300">
+                    $finstruments
+                </div>
             </div>
             <a class="inline-block mt-6 px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg transition-colors float-right" href="$flink" target="_blank">More Info</a>
+            <div class="clear-both"></div>
         </div>
     </div>
     HTML;

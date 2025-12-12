@@ -13,8 +13,8 @@ $out = [];
 
 // begin the html output
 $out[] = <<<HTML
-<h2 class="uk-heading-bullet uk-heading-divider">$title</h2>
-<div uk-grid class="uk-child-width-1-2@s uk-grid-divider latest-alerts-margin">
+<h2 class="text-3xl font-heading font-bold text-cyan-400 mb-6 border-b-2 border-cyan-500 pb-2">$title</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 HTML;
 
 // make sure we actually have alerts to display
@@ -37,12 +37,12 @@ if( $latest_alerts ) {
 
         // open the card
         $out[] = <<<HTML
-        <div class="uk-card uk-card-small">
-            <div class="uk-card-header uk-padding-small">
-                <h3 class="uk-heading-divider uk-card-title">$section_title</h3>
+        <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
+            <div class="bg-slate-900 px-6 py-4 border-b border-slate-700">
+                <h3 class="text-xl font-heading font-bold text-cyan-400">$section_title</h3>
             </div>
-            <div class="uk-card-body uk-padding-small">
-                <h4>$alert_title</h4>
+            <div class="p-6">
+                <h4 class="text-lg font-semibold text-slate-200 mb-4">$alert_title</h4>
         HTML;
 
         $content = $alert -> post_content;
@@ -52,8 +52,8 @@ if( $latest_alerts ) {
             'sgu_geo_alerts' => ( function( ) use ( $content ) {
                 $trimd_content = wp_trim_words( $content, 30 );
                 return <<<HTML
-                    $trimd_content
-                    <a class="uk-button uk-button-secondary uk-align-right uk-margin" href="/astronomy-information/latest-alerts/geomagnetic-storm-forecast/">Read More</a>
+                    <p class="text-slate-300 mb-4">$trimd_content</p>
+                    <a class="inline-block px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg transition-colors" href="/astronomy-information/latest-alerts/geomagnetic-storm-forecast/">Read More</a>
                 HTML;
             } )( ),
 
@@ -62,12 +62,12 @@ if( $latest_alerts ) {
                 $edate = esc_html( date( 'm/d/Y H:i:s', strtotime( $data -> end ) ) );
                 $cl = esc_html( $data -> class );
                 return <<<HTML
-                <ul class="uk-list uk-list-disc">
-                    <li>Begins: $bdate</li>
-                    <li>Ends: $edate</li>
-                    <li>Class: $cl</li>
+                <ul class="space-y-2 text-slate-300 mb-4">
+                    <li><strong class="text-slate-200">Begins:</strong> $bdate</li>
+                    <li><strong class="text-slate-200">Ends:</strong> $edate</li>
+                    <li><strong class="text-slate-200">Class:</strong> $cl</li>
                 </ul>
-                <a class="uk-button uk-button-secondary uk-align-right uk-margin" href="/astronomy-information/latest-alerts/solar-flare-alerts/">Read More</a>
+                <a class="inline-block px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg transition-colors" href="/astronomy-information/latest-alerts/solar-flare-alerts/">Read More</a>
                 HTML;
             } )( ),
 
@@ -76,20 +76,20 @@ if( $latest_alerts ) {
                 $catalog = esc_html( $data -> catalog );
                 $source = esc_html( $data -> source );
                 return <<<HTML
-                    <ul class="uk-list uk-list-disc">
-                        <li>Start: $sdate</li>
-                        <li>Catalog: $catalog</li>
-                        <li>Source: $source</li>
+                    <ul class="space-y-2 text-slate-300 mb-4">
+                        <li><strong class="text-slate-200">Start:</strong> $sdate</li>
+                        <li><strong class="text-slate-200">Catalog:</strong> $catalog</li>
+                        <li><strong class="text-slate-200">Source:</strong> $source</li>
                     </ul>
-                    <a class="uk-button uk-button-secondary uk-align-right uk-margin" href="/astronomy-information/latest-alerts/coronal-mass-ejection-alerts/">Read More</a>
+                    <a class="inline-block px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg transition-colors" href="/astronomy-information/latest-alerts/coronal-mass-ejection-alerts/">Read More</a>
                 HTML;
             } )( ),
 
             'sgu_sw_alerts' => ( function( ) use ( $data ) {
                 $message = wp_trim_words( $data -> message, 30 );
                 return <<<HTML
-                $message
-                <a class="uk-button uk-button-secondary uk-align-right uk-margin" href="/astronomy-information/latest-alerts/space-weather-alerts/">Read More</a>
+                <p class="text-slate-300 mb-4">$message</p>
+                <a class="inline-block px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg transition-colors" href="/astronomy-information/latest-alerts/space-weather-alerts/">Read More</a>
                 HTML;
             } )( ),
 

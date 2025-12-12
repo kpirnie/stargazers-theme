@@ -384,3 +384,8 @@ html {
         height: 2.5rem;
     }
 }
+
+/* Remove list styles for inline menus */
+nav ul.flex-wrap li {
+    list-style: none !important;
+}

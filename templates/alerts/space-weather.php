@@ -16,29 +16,33 @@ if( $show_paging && in_array( $paging_location, ['top', 'both'] ) ) {
     $out[] = SGU_Static::cpt_pagination( $max_pages, $paged );
 }
 
-// start the output
-$out[] = '<div><ul class="uk-list">';
+$out[] = '<div class="grid grid-cols-1 md:grid-cols-2 gap-6">';
 
 // loop the results
 foreach( $data -> posts as $sw ) {
 
     // setup the data we need for the list items
     $sw_data = maybe_unserialize( $sw -> post_content );
-    $issued = esc_html( date( 'r', strtotime( $sw_data -> issued ) ) );
+    $title = esc_html( $sw -> post_title );
+    $issued = esc_html( date( 'F j, Y g:i A', strtotime( $sw_data -> issued ) ) );
     $message = esc_html( $sw_data -> message );
 
-    // the list item
+    // the card
     $out[] = <<<HTML
-    <li class="uk-padding-small uk-padding-remove-top uk-padding-remove-horizontal">
-        <h4><strong>Issued:</strong> $issued</h4>
-        <pre>$message</pre>
-    </li>
+    <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
+        <div class="bg-slate-900 px-6 py-4 border-b border-slate-700">
+            <h3 class="text-xl font-heading font-bold text-cyan-400">$title</h3>
+            <p class="text-sm text-slate-400 mt-1"><strong>Issued:</strong> $issued</p>
+        </div>
+        <div class="p-6">
+            <pre class="text-slate-300 whitespace-pre-wrap font-mono text-sm overflow-x-auto">$message</pre>
+        </div>
+    </div>
     HTML;
 
 }
 
-// end the output
-$out[] = '</ul></div>';
+$out[] = '</div>';
 
 // if we're showing the paging links, and it's either bottom or both
 if( $show_paging && in_array( $paging_location, ['bottom', 'both'] ) ) {
