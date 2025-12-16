@@ -31,7 +31,7 @@ foreach( $data -> posts as $sw ) {
     $out[] = <<<HTML
     <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
         <div class="bg-slate-900 px-6 py-4 border-b border-slate-700">
-            <h3 class="text-xl font-heading font-bold text-cyan-400">$title</h3>
+            <h3 class="text-xl mt-3 font-bold text-cyan-400">$title</h3>
             <p class="text-sm text-slate-400 mt-1"><strong>Issued:</strong> $issued</p>
         </div>
         <div class="p-6">

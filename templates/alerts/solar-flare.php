@@ -51,7 +51,7 @@ foreach( $data -> posts as $flare ) {
     $out[] = <<<HTML
     <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
         <div class="bg-slate-900 px-6 py-4 border-b border-slate-700">
-            <h3 class="text-xl font-heading font-bold text-cyan-400">$title</h3>
+            <h3 class="text-xl mt-3 font-bold text-cyan-400">$title</h3>
         </div>
         <div class="p-6">
             <ul class="space-y-2 text-slate-300 mb-4">

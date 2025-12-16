@@ -8,15 +8,16 @@
 // We don't want to allow direct access to this
 defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
 
+// hold the output
+$out = [];
+
 // if we're showing the paging links, and it's either top or both
 if( $show_paging && in_array( $paging_location, ['top', 'both'] ) ) {
     $out[] = SGU_Static::cpt_pagination( $max_pages, $paged );
 }
 
 // open the display grid
-$out[] = <<<HTML
-<div uk-grid class="uk-child-width-1-2@s">
-HTML;
+$out[] = '<div class="grid grid-cols-1 md:grid-cols-2 gap-6">';
 
 // loop the data
 foreach( $data -> posts as $neo ) {
@@ -28,41 +29,80 @@ foreach( $data -> posts as $neo ) {
     $magnitude = esc_html( $content -> magnitude );
     $mindia = number_format( $content -> diameter -> kilometers['estimated_diameter_min'], 4 );
     $maxdia = number_format( $content -> diameter -> kilometers['estimated_diameter_max'], 4 );
-    $hazard = SGU_Static::y_or_n( esc_html( $content -> hazardous ) );
+    $hazardous = filter_var( $content -> hazardous, FILTER_VALIDATE_BOOLEAN );
+    $hazard_text = $hazardous ? 'Yes' : 'No';
+    $hazard_class = $hazardous ? 'text-red-400' : 'text-green-400';
     $approach_date = esc_html( $content -> approach_data -> close_approach_date_full );
     $approach_distance = number_format( $content -> approach_data -> miss_distance['kilometers'], 4 );
     $approach_velocity = number_format( $content -> approach_data -> relative_velocity['kilometers_per_second'], 4 );
-    $approach_oribiting = esc_html( $content -> approach_data -> orbiting_body );
+    $approach_orbiting = esc_html( $content -> approach_data -> orbiting_body );
     $link = esc_url( $content -> jpl_url );
 
     // render the card
     $out[] = <<<HTML
-    <div class="uk-card uk-card-small">
-        <div class="uk-card-header uk-padding-small">
-            <h3 class="uk-heading-divider uk-card-title">$title - <small>$date</small></h3>
+    <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
+        <div class="bg-slate-900 px-6 py-4 border-b border-slate-700">
+            <h3 class="text-lg font-heading font-bold text-cyan-400 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                {$title}
+                <span class="text-sm text-slate-500 font-normal ml-auto">{$date}</span>
+            </h3>
         </div>
-        <div class="uk-body uk-padding-small">
-            <ul class="uk-list uk-list-disc">
-                <li><strong>Magnitude:</strong> $magnitude</li>
+        <div class="p-6">
+            <ul class="space-y-3 text-sm">
+                <li class="flex justify-between">
+                    <span class="text-slate-400">Magnitude:</span>
+                    <span class="text-slate-200 font-medium">{$magnitude}</span>
+                </li>
                 <li>
-                    <strong>Diameter:</strong>
-                    <ul class="uk-list uk-list-square uk-margin-remove-top">
-                        <li><strong>Min:</strong> $mindia km</li>
-                        <li><strong>Max:</strong> $maxdia km</li>
+                    <span class="text-slate-400">Diameter:</span>
+                    <ul class="mt-1 ml-4 space-y-1">
+                        <li class="flex justify-between">
+                            <span class="text-slate-500">Min:</span>
+                            <span class="text-slate-300">{$mindia} km</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span class="text-slate-500">Max:</span>
+                            <span class="text-slate-300">{$maxdia} km</span>
+                        </li>
                     </ul>
                 </li>
-                <li><strong>Hazardous:</strong> $hazard</li>
+                <li class="flex justify-between">
+                    <span class="text-slate-400">Hazardous:</span>
+                    <span class="{$hazard_class} font-medium">{$hazard_text}</span>
+                </li>
                 <li>
-                    <strong>Approach Data:</strong>
-                    <ul class="uk-list uk-list-square uk-margin-remove-top">
-                        <li><strong>Closest At:</strong> $approach_date</li>
-                        <li><strong>Distance:</strong> $approach_distance km</li>
-                        <li><strong>Velocity:</strong> $approach_velocity km/s</li>
-                        <li><strong>Orbiting:</strong> $approach_oribiting</li>
+                    <span class="text-slate-400">Approach Data:</span>
+                    <ul class="mt-1 ml-4 space-y-1">
+                        <li class="flex justify-between">
+                            <span class="text-slate-500">Closest At:</span>
+                            <span class="text-slate-300">{$approach_date}</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span class="text-slate-500">Distance:</span>
+                            <span class="text-slate-300">{$approach_distance} km</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span class="text-slate-500">Velocity:</span>
+                            <span class="text-slate-300">{$approach_velocity} km/s</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span class="text-slate-500">Orbiting:</span>
+                            <span class="text-slate-300">{$approach_orbiting}</span>
+                        </li>
                     </ul>
                 </li>
             </ul>
-            <a href="$link" class="uk-button uk-button-secondary uk-align-right" target="_blank" title="$title">More Info</a>
+            <div class="mt-6">
+                <a href="{$link}" class="inline-flex items-center gap-2 px-4 py-2 bg-slate-700 text-slate-200 rounded-lg hover:bg-cyan-600 hover:text-white transition-colors text-sm" target="_blank" rel="noopener noreferrer">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                    More Info
+                </a>
+            </div>
         </div>
     </div>
     HTML;
@@ -70,9 +110,7 @@ foreach( $data -> posts as $neo ) {
 }
 
 // close the output
-$out[] = <<<HTML
-</div>
-HTML;
+$out[] = '</div>';
 
 // if we're showing the paging links, and it's either bottom or both
 if( $show_paging && in_array( $paging_location, ['bottom', 'both'] ) ) {
@@ -82,15 +120,15 @@ if( $show_paging && in_array( $paging_location, ['bottom', 'both'] ) ) {
 // if we're going to show the nasa map
 if( $show_map ) {
     $out[] = <<<HTML
-    <div class="uk-visible@s">
-        <h2 class="uk-heading-divider">NASA Eyes on Asteroids</h2>
-        <p>Fully interactive real-time map of all asteroids and NEO's in our Solar System.</p>
-        <iframe src="https://eyes.nasa.gov/apps/asteroids/#/asteroids" style="width:100%;min-height:750px;"></iframe>
+    <div class="hidden md:block mt-8">
+        <h2 class="text-2xl font-heading font-bold text-cyan-400 mb-4 border-b-2 border-cyan-500 pb-2">NASA Eyes on Asteroids</h2>
+        <p class="text-slate-400 mb-4">Fully interactive real-time map of all asteroids and NEO's in our Solar System.</p>
+        <div class="rounded-lg overflow-hidden border border-slate-700">
+            <iframe src="https://eyes.nasa.gov/apps/asteroids/#/asteroids" class="w-full" style="min-height:750px;"></iframe>
+        </div>
     </div>
     HTML;
 }
 
 // return the output
 echo implode( '', $out );
-
-get_footer( );

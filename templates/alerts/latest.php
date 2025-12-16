@@ -39,7 +39,7 @@ if( $latest_alerts ) {
         $out[] = <<<HTML
         <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
             <div class="bg-slate-900 px-6 py-4 border-b border-slate-700">
-                <h3 class="text-xl font-heading font-bold text-cyan-400">$section_title</h3>
+                <h3 class="text-xl mt-3 font-bold text-cyan-400">$section_title</h3>
             </div>
             <div class="p-6">
                 <h4 class="text-lg font-semibold text-slate-200 mb-4">$alert_title</h4>

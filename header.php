@@ -70,7 +70,7 @@
             </div>
         </div>
     </header>
-    
+    <?php if( ! is_front_page( ) ) { ?>
     <div class="breadcrumbs-container bg-slate-900 border-b border-slate-800">
         <div class="container mx-auto px-4 py-3">
             <?php 
@@ -79,17 +79,23 @@
                 if (function_exists( 'yoast_breadcrumb') && ( ! is_page( ) && ! in_array( $post -> post_type, [ 'sgu_apod', 'sgu_neo' ] ) ) ) {
                     yoast_breadcrumb( '<nav class="text-sm text-slate-400">', '</nav>' ); 
                 } else {
-
-                    // we want to put in the alert-menu left aligned to the container
-                    echo do_shortcode( '[sgup_astro_menu which="alert-menu" inline="true"]' );
-                    // we want to put in the astro-menu right aligned to the container
-                    echo do_shortcode( '[sgup_astro_menu which="astro-menu" inline="true"]' );
-
+                ?>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <?php
+                        // we want to put in the alert-menu left aligned to the container
+                        echo do_shortcode( '[sgup_astro_menu which="alert-menu" is_inline="true" text_align="left"]' );
+                        ?>
+                        <?php
+                        // we want to put in the alert-menu right aligned to the container
+                        echo do_shortcode( '[sgup_astro_menu which="astro-menu" is_inline="true" text_align="right"]' );
+                        ?>
+                    </div>
+                <?php
                 }
                 
             ?>
         
         </div>
     </div>
-    
+    <?php } ?>
     <div id="content" class="site-content flex-grow">

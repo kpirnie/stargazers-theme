@@ -22,7 +22,7 @@ export COMPOSER_ALLOW_SUPERUSER=1;
 
 # Reinstall node_modules with correct permissions
 #rm -rf $PWD/node_modules > /dev/null 2>&1 && npm install > /dev/null 2>&1 && npx update-browserslist-db@latest > /dev/null 2>&1
-rm -rf $PWD/node_modules && npm install && npx update-browserslist-db@latest
+# rm -rf $PWD/node_modules && npm install && npx update-browserslist-db@latest
 
 # now refresh NPM
 npm run build
