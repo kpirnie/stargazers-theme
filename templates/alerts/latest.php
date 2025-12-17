@@ -49,18 +49,21 @@ if( $latest_alerts ) {
         $data = maybe_unserialize( $content );
 
         $out[] = match( $cpt ) {
+            // geomagnetic alerts
             'sgu_geo_alerts' => ( function( ) use ( $content ) {
+
                 $trimd_content = wp_trim_words( $content, 30 );
                 return <<<HTML
                     <p class="text-slate-300 mb-4">$trimd_content</p>
                     <a class="inline-block px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg transition-colors" href="/astronomy-information/latest-alerts/geomagnetic-storm-forecast/">Read More</a>
                 HTML;
             } )( ),
-
+            // solar flare alerts
             'sgu_sf_alerts' => ( function( ) use ( $data ) {
-                $bdate = esc_html( date( 'm/d/Y H:i:s', strtotime( $data -> begin ) ) );
-                $edate = esc_html( date( 'm/d/Y H:i:s', strtotime( $data -> end ) ) );
-                $cl = esc_html( $data -> class );
+
+                $bdate = esc_html( date( 'm/d/Y H:i:s', strtotime( $data -> beginTime ) ) );
+                $edate = esc_html( date( 'm/d/Y H:i:s', strtotime( $data -> endTime ) ) );
+                $cl = esc_html( $data -> classType );
                 return <<<HTML
                 <ul class="space-y-2 text-slate-300 mb-4">
                     <li><strong class="text-slate-200">Begins:</strong> $bdate</li>
@@ -70,11 +73,12 @@ if( $latest_alerts ) {
                 <a class="inline-block px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg transition-colors" href="/astronomy-information/latest-alerts/solar-flare-alerts/">Read More</a>
                 HTML;
             } )( ),
-
+            // coronal mass ejection alerts
             'sgu_cme_alerts' => ( function( ) use ( $data ) {
-                $sdate = esc_html( date( 'm/d/Y H:i:s', strtotime( $data -> start ) ) );
+                
+                $sdate = esc_html( date( 'm/d/Y H:i:s', strtotime( $data -> startTime ) ) );
                 $catalog = esc_html( $data -> catalog );
-                $source = esc_html( $data -> source );
+                $source = esc_html( $data -> sourceLocation );
                 return <<<HTML
                     <ul class="space-y-2 text-slate-300 mb-4">
                         <li><strong class="text-slate-200">Start:</strong> $sdate</li>
@@ -84,8 +88,9 @@ if( $latest_alerts ) {
                     <a class="inline-block px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg transition-colors" href="/astronomy-information/latest-alerts/coronal-mass-ejection-alerts/">Read More</a>
                 HTML;
             } )( ),
-
+            // space weather alerts
             'sgu_sw_alerts' => ( function( ) use ( $data ) {
+                
                 $message = wp_trim_words( $data -> message, 30 );
                 return <<<HTML
                 <p class="text-slate-300 mb-4">$message</p>

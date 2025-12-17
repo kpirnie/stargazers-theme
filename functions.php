@@ -148,3 +148,23 @@ class Stargazers_Footer_Walker_Nav_Menu extends Walker_Nav_Menu {
         $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
     }
 }
+
+/**
+ * Generate wind direction arrow SVG
+ * 
+ * @param int $degrees Wind direction in degrees (0-360)
+ * @param string $size CSS class for size (default: w-4 h-4)
+ * @return string SVG arrow rotated to wind direction
+ */
+function sgu_wind_direction_arrow( $degrees = 0, $size = 'w-4 h-4' ) {
+    // Normalize degrees to 0-360
+    $degrees = $degrees % 360;
+    
+    return sprintf(
+        '<svg class="%s inline-block text-cyan-400" style="transform: rotate(%ddeg);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>',
+        esc_attr( $size ),
+        $degrees
+    );
+}

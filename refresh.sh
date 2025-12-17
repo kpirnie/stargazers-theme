@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 
 # get the user that owns our app here
-APP_USER=`stat -c '%U' $PWD`;
+APP_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+APP_USER=$(stat -c '%U' "$APP_PATH")
 
 # make sure we own it
 chown -R $APP_USER:$APP_USER $PWD*;
 
 # reset permissions first
-find $PWD -type d -exec chmod 755 {} \;
-find $PWD -type f -exec chmod 644 {} \;
-chmod +x refresh.sh;
+find $APP_PATH -type d -exec chmod 755 {} \;
+find $APP_PATH -type f -exec chmod 644 {} \;
+chmod +x $APP_PATH/refresh.sh;
 
 # make sure composer will not throw up on us...
 export COMPOSER_ALLOW_SUPERUSER=1;
@@ -22,10 +23,10 @@ export COMPOSER_ALLOW_SUPERUSER=1;
 
 # Reinstall node_modules with correct permissions
 #rm -rf $PWD/node_modules > /dev/null 2>&1 && npm install > /dev/null 2>&1 && npx update-browserslist-db@latest > /dev/null 2>&1
-# rm -rf $PWD/node_modules && npm install && npx update-browserslist-db@latest
+rm -rf $APP_PATH/node_modules && npm install --prefix "$APP_PATH"
 
 # now refresh NPM
-npm run build
+npm run build --prefix "$APP_PATH"
 
 # just inn case php is caching
 service php8.4-fpm restart && service nginx reload

@@ -51,10 +51,11 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
         <?php else : ?>
             
             <?php
+            
             // Extract weather data
             $temp = round( $weather -> main -> temp ?? 0 );
             $feels_like = round( $weather -> main -> feels_like ?? 0 );
-            $humidity = $weather -> main -> humidity ?? 0;
+            $humidity = round( $weather -> main -> humidity ?? 0 );
             $pressure = $weather -> main -> pressure ?? 0;
             $wind_speed = round( $weather -> wind -> speed ?? 0 );
             $wind_deg = $weather -> wind -> deg ?? 0;
@@ -73,12 +74,9 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
                     $loc_display .= ', ' . $location_name -> state;
                 }
             }
-            
-            // Wind direction to compass
-            $wind_directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
-            $wind_dir = $wind_directions[ round( $wind_deg / 22.5 ) % 16 ];
-            ?>
 
+            ?>
+            
             <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
                 <div class="bg-slate-900 px-6 py-4 border-b border-slate-700">
                     <div class="flex justify-between items-center">
@@ -115,7 +113,7 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
                                 Feels like <?php echo esc_html( $feels_like ); ?>°F
                             </div>
                         </div>
-
+                        
                         <!-- Weather Details -->
                         <?php if( $show_details ) : ?>
                         <div>
@@ -132,7 +130,7 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                                     </svg>
                                     <span class="text-slate-400">Wind:</span>
-                                    <span class="sgu-weather-wind text-slate-200 ml-auto font-medium"><?php echo esc_html( $wind_speed ); ?> mph <?php echo esc_html( $wind_dir ); ?></span>
+                                    <span class="sgu-weather-wind text-slate-200 ml-auto font-medium"><?php echo esc_html( $wind_speed ); ?> mph <?php echo sgu_wind_direction_arrow( $wind_deg ); ?></span>
                                 </li>
                                 <li class="py-3 flex items-center gap-3">
                                     <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
