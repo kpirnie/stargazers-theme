@@ -23,30 +23,49 @@ foreach( $data -> posts as $cme ) {
 
     // setup all the data we'll need for display
     $cme_data = maybe_unserialize( $cme -> post_content );
+    $cme_obj = is_object( $cme_data ) ? $cme_data : (object) $cme_data;
+    
     $title = esc_html( $cme -> post_title );
-    $catalog = esc_html( $cme_data -> catalog );
-    $start = esc_html( date( 'r', strtotime( $cme_data -> start ) ) );
-    $source = esc_html( $cme_data -> source );
-    $region = esc_html( $cme_data -> region );
-    $note = esc_html( $cme_data -> note );
+    $catalog = esc_html( $cme_obj -> catalog ?: 'Not Defined' );
+    $start = esc_html( date( 'r', strtotime( $cme_obj -> startTime ?: 'now' ) ) );
+    $source = esc_html( $cme_obj -> sourceLocation ?: 'Not Defined' );
+    $region = esc_html( $cme_obj -> activeRegionNum ?: 'Not Defined' );
+    $note = esc_html( $cme_obj -> note ?: 'No notes available' );
     
     // build instruments
     $instruments = [];
     $instruments[] = '<ul class="list-disc list-inside pl-4">';
-    foreach( $cme_data -> instruments as $inst ) {
-        $name = esc_html( $inst['displayName'] );
-        $instruments[] = "<li>$name</li>";
+    $inst_data = $cme_obj -> instruments ?: [];
+    if( ! empty( $inst_data ) ) {
+        foreach( $inst_data as $inst ) {
+            $inst = is_object( $inst ) ? $inst : (object) $inst;
+            $name = esc_html( $inst -> displayName ?: ( is_array( $inst ) ? ( $inst['displayName'] ?? 'Unknown' ) : 'Unknown' ) );
+            $instruments[] = "<li>$name</li>";
+        }
+    } else {
+        $instruments[] = '<li>No instruments listed</li>';
     }
     $instruments[] = '</ul>';
     $instruments = implode( '', $instruments );
 
     // build analysis
-    $lat = number_format( $cme_data -> analyses[0]['latitude'], 4 );
-    $lon = number_format( $cme_data -> analyses[0]['longitude'], 4 );
-    $half_width = number_format( $cme_data -> analyses[0]['halfAngle'], 4 );
-    $speed = number_format( $cme_data -> analyses[0]['speed'], 4 );
-    $type = esc_html( $cme_data -> analyses[0]['type'] );
-    $a_note = esc_html( $cme_data -> analyses[0]['note'] );
+    $analyses = $cme_obj -> cmeAnalyses ?: [];
+    if( ! empty( $analyses ) && isset( $analyses[0] ) ) {
+        $analysis_data = is_object( $analyses[0] ) ? $analyses[0] : (object) $analyses[0];
+        $lat = number_format( (float) ( $analysis_data -> latitude ?? 0 ), 4 );
+        $lon = number_format( (float) ( $analysis_data -> longitude ?? 0 ), 4 );
+        $half_width = number_format( (float) ( $analysis_data -> halfAngle ?? 0 ), 4 );
+        $speed = number_format( (float) ( $analysis_data -> speed ?? 0 ), 4 );
+        $type = esc_html( $analysis_data -> type ?: 'Not Defined' );
+        $a_note = esc_html( $analysis_data -> note ?: 'No notes available' );
+    } else {
+        $lat = '0.0000';
+        $lon = '0.0000';
+        $half_width = '0.0000';
+        $speed = '0.0000';
+        $type = 'Not Defined';
+        $a_note = 'No analysis available';
+    }
     
     $analysis = <<<HTML
     <ul class="space-y-1">
@@ -59,7 +78,7 @@ foreach( $data -> posts as $cme ) {
     </ul>
     HTML;
 
-    $link = esc_url( $cme_data -> link );
+    $link = esc_url( $cme_obj -> link ?: '#' );
 
     // unique IDs for accordions
     $instruments_id = 'instruments-' . $cme -> ID;

@@ -81,10 +81,12 @@
                 } else {
                 ?>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        
                         <?php
                         // we want to put in the alert-menu left aligned to the container
                         echo do_shortcode( '[sgup_astro_menu which="alert-menu" is_inline="true" text_align="left"]' );
                         ?>
+
                         <?php
                         // we want to put in the alert-menu right aligned to the container
                         echo do_shortcode( '[sgup_astro_menu which="astro-menu" is_inline="true" text_align="right"]' );

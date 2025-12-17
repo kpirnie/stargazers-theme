@@ -17,26 +17,32 @@ if( $show_paging && in_array( $paging_location, ['top', 'both'] ) ) {
 }
 
 // open the display grid
-$out[] = '<div class="grid grid-cols-1 md:grid-cols-2 gap-6">';
+$out[] = '<div class="grid grid-cols-1 md:grid-cols-3 gap-6">';
 
 // loop the data
 foreach( $data -> posts as $neo ) {
 
     // setup the data needed
-    $content = maybe_unserialize( $neo -> post_content );
+    $content = ( object ) maybe_unserialize( $neo -> post_content );
     $title = esc_html( $neo -> post_title );
     $date = esc_html( date( 'Y-m-d', strtotime( $neo -> post_date ) ) );
-    $magnitude = esc_html( $content -> magnitude );
-    $mindia = number_format( $content -> diameter -> kilometers['estimated_diameter_min'], 4 );
-    $maxdia = number_format( $content -> diameter -> kilometers['estimated_diameter_max'], 4 );
-    $hazardous = filter_var( $content -> hazardous, FILTER_VALIDATE_BOOLEAN );
+
+    $magnitude = esc_html( $content -> absolute_magnitude_h );
+    $mindia = number_format( $content -> estimated_diameter['kilometers']['estimated_diameter_min'], 4 );
+    $maxdia = number_format( $content -> estimated_diameter['kilometers']['estimated_diameter_max'], 4 );
+
+    $hazardous = filter_var( $content -> is_potentially_hazardous_asteroid, FILTER_VALIDATE_BOOLEAN );
     $hazard_text = $hazardous ? 'Yes' : 'No';
     $hazard_class = $hazardous ? 'text-red-400' : 'text-green-400';
-    $approach_date = esc_html( $content -> approach_data -> close_approach_date_full );
-    $approach_distance = number_format( $content -> approach_data -> miss_distance['kilometers'], 4 );
-    $approach_velocity = number_format( $content -> approach_data -> relative_velocity['kilometers_per_second'], 4 );
-    $approach_orbiting = esc_html( $content -> approach_data -> orbiting_body );
-    $link = esc_url( $content -> jpl_url );
+
+    $approach_date = esc_html( $content -> close_approach_data[0]['close_approach_date_full'] );
+
+    $approach_distance = number_format( $content -> close_approach_data[0]['miss_distance']['kilometers'], 4 );
+
+    $approach_velocity = number_format( $content -> close_approach_data[0]['relative_velocity']['kilometers_per_second'], 4 );
+
+    $approach_orbiting = esc_html( $content -> close_approach_data[0]['orbiting_body'] );
+    $link = esc_url( $content -> nasa_jpl_url );
 
     // render the card
     $out[] = <<<HTML

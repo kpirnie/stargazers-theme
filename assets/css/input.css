@@ -162,12 +162,9 @@
         @apply text-cyan-400 font-heading;
     }
 
-    .prose-slate code {
-        @apply bg-slate-800 text-cyan-300 px-2 py-1 rounded;
-    }
-
+    .prose-slate code,
     .prose-slate pre {
-        @apply bg-slate-800 border border-slate-700 rounded-lg;
+        @apply bg-slate-800;
     }
 
     .prose-slate blockquote {
@@ -388,4 +385,8 @@ html {
 /* Remove list styles for inline menus */
 nav ul.flex-wrap li {
     list-style: none !important;
+}
+
+.text-white {
+    color: #fff !important;
 }

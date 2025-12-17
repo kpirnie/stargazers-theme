@@ -23,9 +23,11 @@ foreach( $data -> posts as $sw ) {
 
     // setup the data we need for the list items
     $sw_data = maybe_unserialize( $sw -> post_content );
+    $sw_obj = is_object( $sw_data ) ? $sw_data : (object) $sw_data;
+    
     $title = esc_html( $sw -> post_title );
-    $issued = esc_html( date( 'F j, Y g:i A', strtotime( $sw_data -> issued ) ) );
-    $message = esc_html( $sw_data -> message );
+    $issued = esc_html( date( 'F j, Y g:i A', strtotime( $sw_obj -> issued ?: $sw -> post_date ?: 'now' ) ) );
+    $message = esc_html( $sw_obj -> message ?: 'No message available' );
 
     // the card
     $out[] = <<<HTML
@@ -34,9 +36,7 @@ foreach( $data -> posts as $sw ) {
             <h3 class="text-xl mt-3 font-bold text-cyan-400">$title</h3>
             <p class="text-sm text-slate-400 mt-1"><strong>Issued:</strong> $issued</p>
         </div>
-        <div class="p-6">
-            <pre class="text-slate-300 whitespace-pre-wrap font-mono text-sm overflow-x-auto">$message</pre>
-        </div>
+        <pre class="text-slate-300 whitespace-pre-wrap font-mono text-sm overflow-x-auto">$message</pre>
     </div>
     HTML;
 
