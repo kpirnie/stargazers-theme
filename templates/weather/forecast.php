@@ -50,7 +50,7 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
             $title = '';
             $show_location_picker = false;
             $max_alerts = 3;
-            include SGUP_PATH . '/templates/weather/alerts.php';
+            include locate_template( ['templates/weather/alerts.php', 'sgu/weather/alerts.php', 'stargazers/weather/alerts.php'] ) ?: SGUP_PATH . '/templates/weather/alerts.php'; 
             ?>
         </div>
         <?php endif; ?>

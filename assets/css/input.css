@@ -390,3 +390,83 @@ nav ul.flex-wrap li {
 .text-white {
     color: #fff !important;
 }
+
+/* Image Modal */
+.sgu-image-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sgu-image-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sgu-image-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+}
+
+.sgu-image-modal-content {
+    position: relative;
+    max-width: 60%;
+    max-height: 90vh;
+}
+
+.sgu-image-modal-content img {
+    display: block;
+    max-width: 100%;
+    max-height: 85vh;
+    border-radius: 0.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.sgu-image-modal-close {
+    position: absolute;
+    top: -2.5rem;
+    right: 0;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.sgu-image-modal-close:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+@media (max-width: 768px) {
+    .sgu-image-modal-content {
+        max-width: 85%;
+    }
+}
+
+/* Inline menu separator */
+.separator:not(:last-child)::after {
+    content: '|';
+    margin-left: 0.75rem;
+    @apply text-slate-500;
+}
+/* Collapsible menu mobile styles */
+.sgu-collapsible-menu.mobile-open {
+    @apply flex flex-col space-y-2 mt-2 pb-2 border-b border-slate-700;
+}
+
+.sgu-collapsible-menu.mobile-open .separator:not(:last-child)::after {
+    content: none;
+}

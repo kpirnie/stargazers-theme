@@ -49,6 +49,11 @@ function addArrowsToMenuItems(selector) {
 
     menuItems.forEach(function (link) {
         if (!link.querySelector('.menu-arrow')) {
+            link.style.display = 'inline-flex';
+            link.style.alignItems = 'center';
+            link.style.justifyContent = 'space-between';
+            link.style.width = '100%';
+            
             const arrow = document.createElement('span');
             arrow.className = 'menu-arrow inline-block ml-1 transition-transform duration-200';
             arrow.innerHTML = '<svg class="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>';

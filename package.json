@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A dark astronomy-themed WordPress theme with Tailwind CSS",
   "scripts": {
-    "build:css": "npx tailwindcss -i ./assets/css/input.css -o ./assets/css/main.css --minify",
+    "build:css": "BROWSERSLIST_IGNORE_OLD_DATA=true npx tailwindcss -i ./assets/css/input.css -o ./assets/css/main.css --minify",
     "build:js": "npx esbuild assets/js/main.js --bundle --minify --outfile=assets/js/theme.js",
     "build": "npm run build:css && npm run build:js",
     "watch:css": "npx tailwindcss -i ./assets/css/input.css -o ./assets/css/main.css --watch",

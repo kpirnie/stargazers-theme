@@ -179,7 +179,7 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
                     <?php endforeach; ?>
                 </div>
                 <div class="bg-slate-900 px-6 py-3 border-t border-slate-700 text-sm text-slate-500 flex justify-between">
-                    <span>Data: National Weather Service</span>
+                    <span></span>
                     <?php if( ! empty( $noaa_forecast -> generatedAt ) ) : ?>
                     <span>
                         Updated: <?php echo esc_html( date( 'M j, g:i A', strtotime( $noaa_forecast -> generatedAt ) ) ); ?>
