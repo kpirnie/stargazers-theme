@@ -2,13 +2,16 @@
 /**
  * Template part for displaying the footer
  */
+
+defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
+
 ?>
 <footer id="colophon" class="site-footer bg-slate-950 border-t border-slate-800 mt-auto">
     <div class="container mx-auto px-4 py-8">
         
         <!-- Footer Menu -->
         <div class="footer-menu mb-6 text-sm">
-            <?php get_template_part( 'template-parts/menu', 'footer' ); ?>
+            <?php get_template_part( 'template-parts/navigation/menu', 'footer' ); ?>
         </div>
         
         <!-- Footer Info -->

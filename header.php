@@ -2,6 +2,9 @@
 /**
  * The header template
  */
+
+defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
+
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>

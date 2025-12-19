@@ -462,6 +462,7 @@ nav ul.flex-wrap li {
     margin-left: 0.75rem;
     @apply text-slate-500;
 }
+
 /* Collapsible menu mobile styles */
 .sgu-collapsible-menu.mobile-open {
     @apply flex flex-col space-y-2 mt-2 pb-2 border-b border-slate-700;
@@ -469,4 +470,8 @@ nav ul.flex-wrap li {
 
 .sgu-collapsible-menu.mobile-open .separator:not(:last-child)::after {
     content: none;
+}
+
+.current {
+    font-weight: bold !important;
 }

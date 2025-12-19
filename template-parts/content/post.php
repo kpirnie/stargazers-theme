@@ -2,6 +2,9 @@
 /**
  * Template part for displaying post content
  */
+
+defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
+
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class('container mx-auto px-4 py-8 mb-12 bg-slate-800 rounded-lg border border-slate-700'); ?>>
@@ -94,25 +97,8 @@
                     <?php the_tags('<span class="text-slate-400">', ', ', '</span>'); ?>
                 </div>
             <?php endif; ?>
-            
-            <?php
-            edit_post_link(
-                sprintf(
-                    __('Edit %s', 'stargazers'),
-                    the_title('<span class="screen-reader-text">"', '"</span>', false)
-                ),
-                '<span class="edit-link text-cyan-400 hover:text-cyan-300">',
-                '</span>'
-            );
-            ?>
         </footer>
         
-        <?php
-        // Comments
-        if (comments_open() || get_comments_number()) {
-            comments_template();
-        }
-        ?>
     <?php endif; ?>
     
 </article>

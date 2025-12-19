@@ -3,6 +3,8 @@
  * The template for displaying archive pages
  */
 
+defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
+
 get_header();
 ?>
 

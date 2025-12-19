@@ -2,6 +2,9 @@
 /**
  * Template part for displaying page content
  */
+
+defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
+
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class('container mx-auto px-4 py-6'); ?>>

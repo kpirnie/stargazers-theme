@@ -3,6 +3,8 @@
  * The template for displaying the front page
  */
 
+defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
+
 get_header();
 ?>
 
@@ -11,7 +13,7 @@ get_header();
     while (have_posts()) :
         the_post();
         
-        get_template_part('template-parts/content', 'home');
+        get_template_part('template-parts/content/home');
         
     endwhile;
     ?>

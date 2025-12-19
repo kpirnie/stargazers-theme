@@ -3,6 +3,8 @@
  * The main template file
  */
 
+defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
+
 get_header();
 ?>
 
@@ -13,19 +15,19 @@ get_header();
             the_post();
             
             if (is_singular()) {
-                get_template_part('template-parts/content', 'page');
+                get_template_part('template-parts/content/page');
             } else {
-                get_template_part('template-parts/content', 'post');
+                get_template_part('template-parts/content/post');
             }
             
         }
         
         if (!is_singular()) {
-            get_template_part('template-parts/pagination');
+            get_template_part('template-parts/navigation/archive', 'pagination');
         }
         
     } else {
-        get_template_part('template-parts/content', 'none');
+        get_template_part('template-parts/content/none');
     }
     ?>
 </main>

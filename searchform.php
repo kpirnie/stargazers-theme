@@ -2,6 +2,9 @@
 /**
  * Custom search form template
  */
+
+defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
+
 ?>
 
 <form role="search" method="get" class="search-form" action="<?php echo esc_url(home_url('/')); ?>">

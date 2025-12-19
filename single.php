@@ -3,6 +3,8 @@
  * The template for displaying single posts
  */
 
+defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
+
 get_header();
 ?>
 
@@ -11,14 +13,10 @@ get_header();
     while (have_posts()) :
         the_post();
         
-        get_template_part('template-parts/content', 'post');
+        get_template_part('template-parts/content/post');
         
         // Post navigation
-        the_post_navigation(array(
-            'prev_text' => '<span class="nav-subtitle">' . esc_html__('Previous:', 'stargazers') . '</span> <span class="nav-title">%title</span>',
-            'next_text' => '<span class="nav-subtitle">' . esc_html__('Next:', 'stargazers') . '</span> <span class="nav-title">%title</span>',
-            'screen_reader_text' => __('Post navigation', 'stargazers'),
-        ));
+        get_template_part( 'template-parts/navigation/single', 'pagination' );
         
     endwhile;
     ?>

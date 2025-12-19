@@ -3,9 +3,7 @@
  * Stargazers Theme Functions
  */
 
-if (!defined('ABSPATH')) {
-    exit;
-}
+defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
 
 /**
  * Theme Setup
@@ -41,10 +39,6 @@ function stargazers_enqueue_assets() {
     // Main JS
     wp_enqueue_script('stargazers-scripts', get_template_directory_uri() . '/assets/js/theme.js', array(), '1.0.0', true);
     
-    // Comments
-    if (is_singular() && comments_open() && get_option('thread_comments')) {
-        wp_enqueue_script('comment-reply');
-    }
 }
 add_action('wp_enqueue_scripts', 'stargazers_enqueue_assets');
 

@@ -2,6 +2,9 @@
 /**
  * Template part for displaying a message that posts cannot be found
  */
+
+defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
+
 ?>
 
 <section class="no-results not-found container mx-auto px-4 py-12">

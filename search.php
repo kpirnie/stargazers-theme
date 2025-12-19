@@ -3,6 +3,8 @@
  * The template for displaying search results pages
  */
 
+defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
+
 get_header();
 ?>
 
@@ -24,14 +26,14 @@ get_header();
         <?php
         while (have_posts()) :
             the_post();
-            get_template_part('template-parts/content', 'post');
+            get_template_part('template-parts/content/post');
         endwhile;
         
-        get_template_part('template-parts/pagination');
+        get_template_part('template-parts/navigation/archive', 'pagination');
         
     else :
         
-        get_template_part('template-parts/content', 'none');
+        get_template_part('template-parts/content/none');
         
     endif;
     ?>

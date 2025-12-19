@@ -3,6 +3,8 @@
  * The template for displaying 404 pages (not found)
  */
 
+defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
+
 get_header();
 ?>
 

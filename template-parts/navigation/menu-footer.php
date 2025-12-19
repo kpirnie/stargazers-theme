@@ -2,6 +2,9 @@
 /**
  * Template part for displaying the footer menu
  */
+
+defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
+
 ?>
 <nav class="footer-navigation">
     <?php

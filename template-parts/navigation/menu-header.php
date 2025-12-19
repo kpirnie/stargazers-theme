@@ -2,6 +2,9 @@
 /**
  * Template part for displaying the header menu
  */
+
+defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
+
 ?>
 <nav id="site-navigation" class="main-navigation">
     <?php
