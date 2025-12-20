@@ -19,7 +19,7 @@ if( ! $use_noaa ) {
 ?>
 <div class="sgu-weather-container sgu-weather-daily-container" data-weather-type="daily">
     
-    <?php include locate_template( ['templates/weather/partials/header.php'] ); ?>
+    <?php include locate_template( ['templates/weather/header.php'] ); ?>
 
     <!-- Weather Content -->
     <div class="sgu-weather-content">
@@ -33,6 +33,7 @@ if( ! $use_noaa ) {
             <!-- NOAA Detailed Forecast -->
             <?php if( $use_noaa && $noaa_forecast && ! empty( $noaa_forecast -> periods ) ) : ?>
                 <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden mb-6">
+                    <?php if( $show_title && ! $is_dash ) { ?>
                     <div class="bg-slate-900 px-6 py-4 border-b border-slate-700">
                         <h3 class="text-xl mt-3 font-bold text-cyan-400 flex items-center gap-2">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -41,6 +42,7 @@ if( ! $use_noaa ) {
                             <?php echo esc_html( ( ! $is_dash ) ? $title : 'Today\'s Forecast' ); ?>
                         </h3>
                     </div>
+                    <?php } ?>
                     <div class="p-6">
                         <div class="space-y-2">
                             <?php 

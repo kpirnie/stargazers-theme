@@ -30,7 +30,7 @@ $severity_badges = [
 ?>
 <div class="sgu-weather-container sgu-weather-alerts-container my-6" data-weather-type="alerts">
     
-    <?php if( $title ) : ?>
+    <?php if( $title && $show_title ) : ?>
         <h2 class="text-3xl font-heading font-bold text-cyan-400 mb-6 border-b-2 border-cyan-500 pb-2"><?php echo esc_html( $title ); ?></h2>
     <?php endif; ?>
 
@@ -41,7 +41,7 @@ $severity_badges = [
         $title = $title ?? 'Set Your Location';
         $has_location = $has_location ?? false;
         $location = $location ?? null;
-        include locate_template( ['templates/weather/partials/location-picker.php'] );
+        include locate_template( ['templates/weather/location-picker.php'] );
         ?>
     <?php endif; ?>
 

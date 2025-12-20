@@ -18,20 +18,26 @@ if( ! $current_weather ) {
 <div class="sgu-weather-container sgu-weather-current-container" data-weather-type="current">
     <?php
         // include the weather header template
-        include locate_template( ['templates/weather/partials/header.php'] );
+        include locate_template( ['templates/weather/header.php'] );
     ?>
     <!-- Weather Content -->
     <div class="sgu-weather-content">
         <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
+            <?php if( $show_title && ! $is_dash ) { ?>
             <div class="bg-slate-900 px-6 py-4 border-b border-slate-700">
+                
                 <h3 class="text-xl mt-3 font-bold text-cyan-400 flex items-center gap-2">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                     </svg>
-                    <?php echo esc_html( ( ! $is_dash ) ? $title : 'Current Conditions' ); ?>
+                    <?php
+                        echo esc_html( $title ?: 'Current Conditions' ); 
+                    ?>
                 </h3>
+                
             </div>
+            <?php } ?>
             <div class="p-4">
                 <?php
                 $temp = round( $current_weather -> main -> temp ?? 0 );
