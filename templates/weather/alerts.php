@@ -31,11 +31,11 @@ $severity_badges = [
 <div class="sgu-weather-container sgu-weather-alerts-container my-6" data-weather-type="alerts">
     
     <?php if( $title ) : ?>
-    <h2 class="text-3xl font-heading font-bold text-cyan-400 mb-6 border-b-2 border-cyan-500 pb-2"><?php echo esc_html( $title ); ?></h2>
+        <h2 class="text-3xl font-heading font-bold text-cyan-400 mb-6 border-b-2 border-cyan-500 pb-2"><?php echo esc_html( $title ); ?></h2>
     <?php endif; ?>
 
     <!-- Location Picker -->
-    <?php if( $show_location_picker ) : ?>
+    <?php if( $show_location_picker && ! $is_dash ) : ?>
         <?php 
         $compact = true;
         $title = $title ?? 'Set Your Location';
