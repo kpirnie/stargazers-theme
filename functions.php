@@ -48,7 +48,7 @@ add_action('wp_enqueue_scripts', 'stargazers_enqueue_assets');
 class Stargazers_Walker_Nav_Menu extends Walker_Nav_Menu {
     function start_lvl(&$output, $depth = 0, $args = null) {
         $indent = str_repeat("\t", $depth);
-        $output .= "\n$indent<ul class=\"submenu absolute left-0 mt-2 w-48 bg-slate-800 border border-slate-700 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50\">\n";
+        $output .= "\n$indent<ul class=\"submenu absolute left-0 mt-2 w-48 bg-slate-800 border border-slate-700 rounded-lg shadow-lg z-50\">\n";
     }
 
     function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
@@ -58,7 +58,7 @@ class Stargazers_Walker_Nav_Menu extends Walker_Nav_Menu {
         $classes[] = 'menu-item-' . $item->ID;
         
         if ($depth === 0) {
-            $classes[] = 'relative group';
+            $classes[] = 'relative';
         }
         
         $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args, $depth));

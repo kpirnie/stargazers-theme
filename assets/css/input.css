@@ -24,6 +24,11 @@
 
     #site-navigation .submenu {
         z-index: 100;
+        display: none;
+    }
+
+    #site-navigation .submenu.active {
+        display: block;
     }
 
     /* Remove list styling from pagination */

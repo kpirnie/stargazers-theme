@@ -53,7 +53,7 @@ function addArrowsToMenuItems(selector) {
             link.style.alignItems = 'center';
             link.style.justifyContent = 'space-between';
             link.style.width = '100%';
-            
+
             const arrow = document.createElement('span');
             arrow.className = 'menu-arrow inline-block ml-1 transition-transform duration-200';
             arrow.innerHTML = '<svg class="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>';
@@ -72,20 +72,18 @@ function handleDesktopMenu() {
         const arrow = link ? link.querySelector('.menu-arrow') : null;
 
         if (submenu && link) {
-            submenu.style.display = 'none';
-
             link.addEventListener('click', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
 
-                const isOpen = submenu.style.display !== 'none' && submenu.offsetHeight > 0;
+                const isOpen = submenu.classList.contains('active');
 
                 // Close all sibling submenus
                 const parentItem = item.parentElement;
                 if (parentItem) {
                     parentItem.querySelectorAll(':scope > .menu-item-has-children > .submenu').forEach(function (otherSubmenu) {
-                        if (otherSubmenu !== submenu && otherSubmenu.style.display !== 'none') {
-                            slideToggle(otherSubmenu, 250);
+                        if (otherSubmenu !== submenu && otherSubmenu.classList.contains('active')) {
+                            otherSubmenu.classList.remove('active');
                             const otherItem = otherSubmenu.closest('.menu-item-has-children');
                             const otherArrow = otherItem.querySelector(':scope > a .menu-arrow');
                             if (otherArrow) {
@@ -96,22 +94,26 @@ function handleDesktopMenu() {
                 }
 
                 // Toggle this submenu
-                slideToggle(submenu, 250);
+                if (isOpen) {
+                    submenu.classList.remove('active');
+                    if (arrow) {
+                        arrow.style.transform = 'rotate(0deg)';
+                    }
 
-                if (arrow) {
-                    arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
-                }
-
-                // Close nested submenus when closing parent
-                submenu.querySelectorAll('.submenu').forEach(function (nestedSubmenu) {
-                    if (nestedSubmenu.style.display !== 'none') {
-                        slideToggle(nestedSubmenu, 250);
+                    // Close nested submenus
+                    submenu.querySelectorAll('.submenu').forEach(function (nestedSubmenu) {
+                        nestedSubmenu.classList.remove('active');
                         const nestedArrow = nestedSubmenu.closest('.menu-item-has-children').querySelector(':scope > a .menu-arrow');
                         if (nestedArrow) {
                             nestedArrow.style.transform = 'rotate(0deg)';
                         }
+                    });
+                } else {
+                    submenu.classList.add('active');
+                    if (arrow) {
+                        arrow.style.transform = 'rotate(180deg)';
                     }
-                });
+                }
             });
 
             submenu.addEventListener('click', function (e) {
@@ -173,14 +175,12 @@ function handleOutsideClick() {
     document.addEventListener('click', function (event) {
         const nav = document.querySelector('#site-navigation');
         if (nav && !nav.contains(event.target)) {
-            document.querySelectorAll('#site-navigation .submenu').forEach(function (submenu) {
-                if (submenu.style.display !== 'none' && submenu.offsetHeight > 0) {
-                    slideToggle(submenu, 250);
-                    const item = submenu.closest('.menu-item-has-children');
-                    const arrow = item ? item.querySelector(':scope > a .menu-arrow') : null;
-                    if (arrow) {
-                        arrow.style.transform = 'rotate(0deg)';
-                    }
+            document.querySelectorAll('#site-navigation .submenu.active').forEach(function (submenu) {
+                submenu.classList.remove('active');
+                const item = submenu.closest('.menu-item-has-children');
+                const arrow = item ? item.querySelector(':scope > a .menu-arrow') : null;
+                if (arrow) {
+                    arrow.style.transform = 'rotate(0deg)';
                 }
             });
         }
