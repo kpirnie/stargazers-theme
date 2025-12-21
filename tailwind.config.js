@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  important: true,
   content: [
     './*.php',
     './template-parts/**/*.php',
@@ -20,7 +21,7 @@ module.exports = {
       pattern: /^border(-slate|-cyan|-gray)?-?/,  // Borders
     },
     {
-      pattern: /^rounded(-lg|-xl)?/,  // Rounded corners
+      pattern: /^rounded(-md|-lg|-xl)?/,  // Rounded corners
     },
   ],
   theme: {

@@ -12,7 +12,7 @@ get_header();
 $title = esc_html( $post->post_title );
 $content = apply_filters( 'the_content', $post->post_content );
 $date = get_the_date( 'F j, Y', $post );
-$post_meta = ( object ) ( get_post_meta( $post->ID ) ?: [] );
+$post_meta = ( object ) ( get_post_meta( $post->ID ) ?: [] );var_dump($post_meta);
 $copyright = $post_meta -> sgu_apod_copyright[0] ?: 'NASA/JPL';
 $media_type = $post_meta -> sgu_apod_local_media_type[0];
 $local_media = $post_meta -> sgu_apod_local_media[0];
