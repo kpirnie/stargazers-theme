@@ -16,13 +16,6 @@ $compact_class = $compact ? 'sgu-weather-location-compact' : '';
 
 <div class="sgu-weather-location-picker <?php echo esc_attr( $compact_class ); ?> mb-6">
 
-    <button type="button" class="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-300 transition-colors mt-2 sgu-weather-refresh">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-        </svg>
-        Refresh Data
-    </button>
-    
     <?php if( ! $compact ) : ?>
     <h3 class="text-xl font-heading font-bold text-cyan-400 mb-4 flex items-center gap-2">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -34,32 +27,40 @@ $compact_class = $compact ? 'sgu-weather-location-compact' : '';
     <?php endif; ?>
 
     <!-- Current Location Display -->
-    <div class="sgu-weather-has-location <?php echo ! $has_location ? 'hidden' : ''; ?>">
-        <div class="flex items-center justify-between bg-slate-800 rounded-lg border border-slate-700 px-4 py-3">
-            <div class="flex items-center gap-2 text-slate-200">
-                <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                </svg>
-                <span class="sgu-weather-location-name font-medium">
-                    <?php 
-                    if( $location ) {
-                        echo esc_html( $location -> name );
-                        if( ! empty( $location -> state ) ) {
-                            echo ', ' . esc_html( $location -> state );
-                        }
+<div class="sgu-weather-has-location <?php echo ! $has_location ? 'hidden' : ''; ?>">
+    <div class="flex items-center justify-between bg-slate-800 rounded-lg border border-slate-700 px-4 py-3">
+        <div class="flex items-center gap-2 text-slate-200">
+            <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <span class="sgu-weather-location-name font-medium">
+                <?php 
+                if( $location ) {
+                    echo esc_html( $location -> name );
+                    if( ! empty( $location -> state ) ) {
+                        echo ', ' . esc_html( $location -> state );
                     }
-                    ?>
-                </span>
-            </div>
+                }
+                ?>
+            </span>
+        </div>
+        <div class="flex items-center gap-2">
             <button type="button" class="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-700 text-slate-300 text-sm rounded-lg hover:bg-cyan-600 hover:text-white transition-colors sgu-weather-change-location">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                 </svg>
                 Change Location
             </button>
+            <button type="button" class="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-800 border border-slate-700 text-slate-300 text-sm font-medium rounded-lg hover:bg-cyan-600 hover:text-white hover:border-cyan-500 transition-colors sgu-weather-refresh">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                </svg>
+                <span>Refresh Data</span>
+            </button>
         </div>
     </div>
+</div>
 
     <!-- Location Prompt -->
     <div class="sgu-weather-location-prompt <?php echo esc_attr( $prompt_class ); ?>">
