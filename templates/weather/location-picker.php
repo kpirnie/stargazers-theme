@@ -27,7 +27,7 @@ $compact_class = $compact ? 'sgu-weather-location-compact' : '';
     <?php endif; ?>
 
     <!-- Current Location Display -->
-<div class="sgu-weather-has-location <?php echo ! $has_location ? 'hidden' : ''; ?>">
+<div class="sgu-weather-has-location" style="<?php echo ! $has_location ? 'display: none;' : ''; ?>">
     <div class="flex items-center justify-between bg-slate-800 rounded-lg border border-slate-700 px-4 py-3">
         <div class="flex items-center gap-2 text-slate-200">
             <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -63,7 +63,7 @@ $compact_class = $compact ? 'sgu-weather-location-compact' : '';
 </div>
 
     <!-- Location Prompt -->
-    <div class="sgu-weather-location-prompt <?php echo esc_attr( $prompt_class ); ?>">
+    <div class="sgu-weather-location-prompt" style="<?php echo $has_location ? 'display: none;' : ''; ?>">
         <div class="bg-slate-800 rounded-lg border border-slate-700 p-6">
             
             <p class="text-slate-400 mb-4">Set your location to see local weather data.</p>
