@@ -14,6 +14,7 @@ if( ! $forecast ) {
     $forecast = $daily_forecast;
     $days_to_show = 7;
 }
+$days_to_show = $days_to_show ?? 7;
 ?>
 <div class="sgu-weather-container sgu-weather-weekly-container" data-weather-type="weekly">
     
@@ -34,22 +35,23 @@ if( ! $forecast ) {
 
             <!-- Open-Meteo Daily Forecast Grid -->
             <?php if( isset( $forecast -> daily ) && ! empty( $forecast -> daily ) ) : ?>
-                <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden mb-6">
+
+                <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden my-6">
                     <?php if( $show_title && ! $is_dash ) { ?>
-                    <div class="bg-slate-900 px-6 py-4 border-b border-slate-700">
-                        <h3 class="text-xl mt-3 font-bold text-cyan-400 flex items-center gap-2">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                            </svg>
-                            <?php echo esc_html( ( ! $is_dash ) ? $title : '7-Day Outlook' ); ?>
-                        </h3>
-                    </div>
+                        <div class="bg-slate-900 px-6 py-4 border-b border-slate-700">
+                            <h3 class="text-xl mt-3 font-bold text-cyan-400 flex items-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                <?php echo esc_html( ( ! $is_dash ) ? $title : '7-Day Outlook' ); ?>
+                            </h3>
+                        </div>
                     <?php } ?>
                     <div class="p-4 overflow-x-auto">
                         <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2">
                             <?php 
                             $day_count = 0;
-                            foreach( $forecast -> daily as $day ) : 
+                            foreach( $forecast -> daily as $day ) :
                                 if( $day_count >= $days_to_show ) break;
                                 $day_count++;
                                 

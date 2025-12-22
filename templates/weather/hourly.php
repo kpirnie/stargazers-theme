@@ -51,20 +51,20 @@ if( !$hourly_forecast ) {
                             $wind_speed = round( $hour['wind_speed'] ?? 0 );
                             $wind_deg = $hour['wind_deg'] ?? 0;
                             $wind_dir = SGU_Static::wind_direction_to_compass( $wind_deg );
-                        ?>
-                        <div class="text-center bg-slate-900 rounded-lg p-3 min-w-[70px]">
-                            <div class="text-xs text-slate-400"><?php echo esc_html( $hour_time ); ?></div>
-                            <div class="text-2xl my-2">
-                                <?php echo SGU_Static::get_weather_emoji( $hour_icon ); ?>
+                            ?>
+                            <div class="text-center bg-slate-900 rounded-lg p-3 min-w-[70px]">
+                                <div class="text-xs text-slate-400"><?php echo esc_html( $hour_time ); ?></div>
+                                <div class="text-2xl my-2">
+                                    <?php echo SGU_Static::get_weather_emoji( $hour_icon ); ?>
+                                </div>
+                                <div class="text-xs text-cyan-400">
+                                    <?php echo esc_html( $wind_speed ); ?> mph <?php echo esc_html( $wind_dir ); ?>
+                                </div>
+                                <div class="font-bold text-slate-200"><?php echo esc_html( $hour_temp ); ?>°</div>
+                                <?php if( $hour_pop > 0 ) : ?>
+                                <div class="text-xs text-cyan-400"><?php echo esc_html( $hour_pop ); ?>%</div>
+                                <?php endif; ?>
                             </div>
-                            <div class="text-xs text-cyan-400">
-                                <?php echo esc_html( $wind_speed ); ?> mph <?php echo esc_html( $wind_dir ); ?>
-                            </div>
-                            <div class="font-bold text-slate-200"><?php echo esc_html( $hour_temp ); ?>°</div>
-                            <?php if( $hour_pop > 0 ) : ?>
-                            <div class="text-xs text-cyan-400"><?php echo esc_html( $hour_pop ); ?>%</div>
-                            <?php endif; ?>
-                        </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
