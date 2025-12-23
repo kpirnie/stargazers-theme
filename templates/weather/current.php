@@ -24,20 +24,21 @@ if( ! $current_weather ) {
     <div class="sgu-weather-content">
         <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
             <?php if( $show_title && ! $is_dash ) { ?>
-            <div class="bg-slate-900 px-6 py-4 border-b border-slate-700">
-                
-                <h3 class="text-xl mt-3 font-bold text-cyan-400 flex items-center gap-2">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                    </svg>
-                    <?php
-                        echo esc_html( $title ?: 'Current Conditions' ); 
-                    ?>
-                </h3>
-                
-            </div>
+                <div class="bg-slate-900 px-6 py-4 border-b border-slate-700">
+                    
+                    <h3 class="text-xl mt-3 font-bold text-cyan-400 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <?php
+                            echo esc_html( $title ?: 'Current Conditions' ); 
+                        ?>
+                    </h3>
+                    
+                </div>
             <?php } ?>
+
             <div class="p-4">
                 <?php
                 $temp = round( $current_weather -> main -> temp ?? 0 );
@@ -55,9 +56,25 @@ if( ! $current_weather ) {
                 ?>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                    <!-- Main Temperature (Right) -->
+                    <div class="text-center my-auto">
+                        <div class="text-7xl leading-none">
+                            <?php echo SGU_Static::get_weather_emoji( $icon ); ?>
+                        </div>
+                        <div class="text-5xl font-bold text-slate-100 leading-none mt-2">
+                            <?php echo esc_html( $temp ); ?>°F
+                        </div>
+                        <div class="text-lg text-slate-300 mt-2">
+                            <?php echo esc_html( $description ); ?>
+                        </div>
+                        <div class="text-slate-500">
+                            Feels like <?php echo esc_html( $feels_like ); ?>°F
+                        </div>
+                    </div>
                     
-                    <!-- Weather Details (Left) -->
-                    <ul class="divide-y divide-slate-700 text-sm pl-1 mt-1">
+                    <!-- Weather Details (right) -->
+                    <ul class="divide-y divide-slate-700 text-sm pr-1 mr-2  mt-1">
                         <li class="py-2 flex items-center gap-3">
                             <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
@@ -104,22 +121,6 @@ if( ! $current_weather ) {
                         <?php endif; ?>
                     </ul>
                     
-                    <!-- Main Temperature (Right) -->
-                    <div class="text-center my-auto">
-                        <div class="text-7xl leading-none">
-                            <?php echo SGU_Static::get_weather_emoji( $icon ); ?>
-                        </div>
-                        <div class="text-5xl font-bold text-slate-100 leading-none mt-2">
-                            <?php echo esc_html( $temp ); ?>°F
-                        </div>
-                        <div class="text-lg text-slate-300 mt-2">
-                            <?php echo esc_html( $description ); ?>
-                        </div>
-                        <div class="text-slate-500">
-                            Feels like <?php echo esc_html( $feels_like ); ?>°F
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>

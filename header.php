@@ -86,13 +86,17 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         
                         <?php
+                        $left_block = '<!-- wp:sgup/astro-menu {"which":"alert-menu","is_inline":true} /-->';
+
                         // we want to put in the alert-menu left aligned to the container
-                        echo do_shortcode( '[sgup_astro_menu which="alert-menu" is_inline="true" text_align="left"]' );
+                        echo do_blocks( $left_block );
                         ?>
 
                         <?php
+                        $right_block = '<!-- wp:sgup/astro-menu {"which":"astro-menu","text_align":"right","is_inline":true} /-->';
+
                         // we want to put in the alert-menu right aligned to the container
-                        echo do_shortcode( '[sgup_astro_menu which="astro-menu" is_inline="true" text_align="right"]' );
+                        echo do_blocks( $right_block );
                         ?>
                     </div>
                 <?php
