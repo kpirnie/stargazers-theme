@@ -9,6 +9,12 @@ get_header();
 ?>
 
 <main id="primary" class="site-main">
+
+
+
+
+
+
     
     <?php if (have_posts()) : ?>
         
@@ -23,14 +29,36 @@ get_header();
             </h1>
         </header>
         
+        <?php get_template_part('template-parts/navigation/archive', 'pagination'); ?>
+
+        <div class="container mx-auto px-4 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Main Content -->
+                <div class="md:col-span-2">
+                    
+                    <div class="space-y-6">
+                        <?php
+                        while (have_posts()) :
+                            the_post();
+                            get_template_part('template-parts/content/post');
+                        endwhile;
+                        ?>
+                    </div>
+                    
+                </div>
+
+                <!-- Sidebar -->
+                <div class="md:col-span-1">
+                    <?php get_template_part('template-parts/blog', 'sidebar'); ?>
+                </div>
+
+            </div>
+        </div>
+
+        <?php get_template_part('template-parts/navigation/archive', 'pagination'); ?>
+
         <?php
-        while (have_posts()) :
-            the_post();
-            get_template_part('template-parts/content/post');
-        endwhile;
-        
-        get_template_part('template-parts/navigation/archive', 'pagination');
-        
     else :
         
         get_template_part('template-parts/content/none');

@@ -12,27 +12,51 @@ get_header();
     
     <?php if (have_posts()) : ?>
         
-        <header class="page-header container mx-auto px-4 py-12 mb-8">
-            <?php
-            the_archive_title('<h1 class="page-title text-4xl md:text-5xl font-heading font-bold text-cyan-400 mb-4">', '</h1>');
-            the_archive_description('<div class="archive-description text-lg text-slate-400">', '</div>');
-            ?>
+        <header class="bg-slate-900 border-b border-slate-800">
+            <div class="container mx-auto px-4 py-6">
+                <?php
+                the_archive_title('<h1 class="text-4xl font-heading font-bold text-cyan-400">', '</h1>');
+                the_archive_description('<div class="text-slate-400 mt-2">', '</div>');
+                ?>
+            </div>
         </header>
+
+        <?php get_template_part('template-parts/navigation/archive', 'pagination'); ?>
+
+        <div class="container mx-auto px-4 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Main Content -->
+                <div class="md:col-span-2">
+                    
+                    <div class="space-y-6">
+                        <?php
+                        while (have_posts()) :
+                            the_post();
+                            get_template_part('template-parts/content/post');
+                        endwhile;
+                        ?>
+                    </div>
+                    
+                </div>
+
+                <!-- Sidebar -->
+                <div class="md:col-span-1">
+                    <?php get_template_part('template-parts/blog', 'sidebar'); ?>
+                </div>
+
+            </div>
+        </div>
+
+        <?php get_template_part('template-parts/navigation/archive', 'pagination'); ?>
         
-        <?php
-        while (have_posts()) :
-            the_post();
-            get_template_part('template-parts/content', 'post');
-        endwhile;
+    <?php else : ?>
         
-        get_template_part('template-parts/pagination');
+        <div class="container mx-auto px-4 py-12">
+            <?php get_template_part('template-parts/content/none'); ?>
+        </div>
         
-    else :
-        
-        get_template_part('template-parts/content', 'none');
-        
-    endif;
-    ?>
+    <?php endif; ?>
     
 </main>
 

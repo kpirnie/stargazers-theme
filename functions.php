@@ -161,4 +161,12 @@ function sgu_wind_direction_arrow( $degrees = 0, $size = 'w-4 h-4' ) {
         esc_attr( $size ),
         $degrees
     );
+
+}
+
+add_filter('embed_oembed_html', 'modify_oembed_iframe', 99, 4);
+function modify_oembed_iframe($html, $url, $attr, $post_id) {
+    // Add class to iframe elements
+    $html = str_replace('<iframe', '<iframe class="w-full h-96 aspect-video"', $html);   
+    return $html;
 }
