@@ -95,7 +95,7 @@ if( $latest_alerts ) {
                         <li><strong class="text-slate-200">Catalog:</strong> $catalog</li>
                         <li><strong class="text-slate-200">Source:</strong> $source</li>
                     </ul>
-                    <button data-src="//services.swpc.noaa.gov/experimental/images/animations/lasco-c2/latest.jpg" class="inline-block px-6 py-2 bg-slate-600 hover:bg-slate-500 text-white rounded-lg transition-colors" href="">Latest Image</button>
+                    <button data-src="//services.swpc.noaa.gov/images/animations/lasco-c2/latest.jpg" class="inline-block px-6 py-2 bg-slate-600 hover:bg-slate-500 text-white rounded-lg transition-colors" href="">Latest Image</button>
                     <a class="inline-block px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg transition-colors" href="$permalink">Read More</a>
                 HTML;
             } )( ),
