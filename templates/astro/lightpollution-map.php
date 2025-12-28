@@ -1,32 +1,14 @@
 <?php
 /**
- * Template: Light Pollution Map
+ * Light Pollution Map Template
  * 
- * Displays an interactive light pollution map using Leaflet with VIIRS overlay
- * 
- * @package US Star Gazers
- * @since 8.4
- * 
- * Available variables:
- * @var string $title The block title
- * @var bool $show_title Whether to show the title
- * @var bool $show_location_picker Whether to show location picker
- * @var int $max_height Number of pixels for the map height
- * @var string $wrapper_attr Extra wrapper attributes
- * @var bool $has_location Whether user has a stored location
- * @var object|null $location User's location data
- * @var string $location_name Location name
- * @var float $latitude User's latitude
- * @var float $longitude User's longitude
+ * @package Stargazers Theme
  */
 
-// Prevent direct access
 defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
 
-// Generate unique ID for this instance
 $map_id = 'sgu-lp-map-' . wp_unique_id();
 
-// Build location label for popup
 $popup_content = '';
 if ( $has_location && ! empty( $location_name ) ) {
     $popup_content = '<small>' . esc_js( $location_name );
@@ -38,12 +20,10 @@ if ( $has_location && ! empty( $location_name ) ) {
     $popup_content = '<small>' . esc_js( round( $latitude, 4 ) ) . ', ' . esc_js( round( $longitude, 4 ) ) . '</small>';
 }
 
-// Enqueue required assets
 wp_enqueue_style( 'leaflet' );
 wp_enqueue_script( 'sgu-light-pollution-map' );
 wp_enqueue_style( 'sgu-light-pollution-map' );
 
-// Pass config to JS
 wp_add_inline_script( 'sgu-light-pollution-map', 'window.sguLightPollutionMaps = window.sguLightPollutionMaps || [];
 window.sguLightPollutionMaps.push(' . wp_json_encode( [
     'mapId'        => $map_id,
@@ -53,10 +33,10 @@ window.sguLightPollutionMaps.push(' . wp_json_encode( [
 ] ) . ');', 'before' );
 ?>
 
-<div class="sgu-light-pollution-container" <?php echo $wrapper_attr; ?>>
+<div class="my-4 z-1" <?php echo $wrapper_attr; ?>>
 
     <?php if ( $show_title && ! empty( $title ) ) : ?>
-        <h2 class="sgu-light-pollution-title"><?php echo esc_html( $title ); ?></h2>
+        <h2 class="text-3xl font-heading font-bold text-cyan-400 mb-4 border-b-2 border-cyan-500 pb-2 mt-0"><?php echo esc_html( $title ); ?></h2>
     <?php endif; ?>
 
     <?php if ( $show_location_picker ) : ?>
@@ -74,18 +54,16 @@ window.sguLightPollutionMaps.push(' . wp_json_encode( [
 
     <div 
         id="<?php echo esc_attr( $map_id ); ?>" 
-        class="sgu-light-pollution-map"
+        class="rounded-lg overflow-hidden border border-slate-700"
         style="height:<?php echo esc_attr( $max_height ); ?>px;"
     ></div>
 
-    <div class="sgu-lp-legend">
-        <span><span class="sgu-lp-legend-color" style="background:#000000;"></span> Dark</span>
-        <span><span class="sgu-lp-legend-color" style="background:#0b0b2a;"></span> Min.</span>
-        <span><span class="sgu-lp-legend-color" style="background:#1a1a4a;"></span> Low</span>
-        <span><span class="sgu-lp-legend-color" style="background:#3d3d7a;"></span> Moderate</span>
-        <span><span class="sgu-lp-legend-color" style="background:#7a7a00;"></span> Bright</span>
-        <span><span class="sgu-lp-legend-color" style="background:#ffaa00;"></span> Brighter</span>
-        <span><span class="sgu-lp-legend-color" style="background:#ffffff;"></span> Intense</span>
+    <div class="mt-4">
+        <div class="h-4 rounded-lg" style="background: linear-gradient(to right, #000000, #0b0b2a, #1a1a4a, #3d3d7a, #7a7a00, #ffaa00, #ffffff);"></div>
+        <div class="flex justify-between text-xs text-slate-400 mt-1">
+            <span>Dark</span>
+            <span>Intense</span>
+        </div>
     </div>
 
 </div>

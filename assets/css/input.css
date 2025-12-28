@@ -480,3 +480,74 @@ nav ul.flex-wrap li {
 .current {
     font-weight: bold !important;
 }
+
+.leaflet-container {
+    z-index: 1 !important;
+}
+
+.leaflet-pane {
+    z-index: 1 !important;
+}
+
+.leaflet-tile-pane {
+    z-index: 1 !important;
+}
+
+.sticky {
+    z-index: 40 !important;
+}
+
+/* Night Vision Toggle Button */
+/* Night Vision Toggle Button */
+#night-vision-toggle {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #185e98 0%, #0e3759 100%);
+    border: 2px solid #77aad4;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(14, 55, 89, 0.4);
+}
+
+#night-vision-toggle:hover {
+    background: linear-gradient(135deg, #77aad4 0%, #185e98 100%);
+    transform: scale(1.1);
+}
+
+#night-vision-toggle:active {
+    transform: scale(0.95);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    #night-vision-toggle {
+        bottom: 1rem;
+        left: 1rem;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
+
+/* Night Vision Overlay */
+#night-vision-overlay {
+    @apply fixed inset-0 pointer-events-none transition-opacity duration-500;
+    background-color: rgba(139, 0, 0, 0.55);
+    mix-blend-mode: multiply;
+    z-index: 39;
+    opacity: 0;
+}
+
+#night-vision-overlay.active {
+    opacity: 1;
+}

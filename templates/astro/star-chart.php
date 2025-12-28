@@ -1,17 +1,12 @@
 <?php
 /**
- * Star Chart Template - iframe version
+ * Star Chart Template
  * 
- * Uses VirtualSky iframe embed from Las Cumbres Observatory
- * https://virtualsky.lco.global/embed/
- * 
- * @package US_Stargazers_Plugin
- * @since 1.0.0
+ * @package Stargazers Theme
  */
 
 defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
 
-// Build VirtualSky iframe URL parameters
 $iframe_params = [
     'projection' => $projection ?? 'stereo',
     'latitude' => $latitude,
@@ -33,7 +28,6 @@ $iframe_params = [
     'keyboard' => filter_var( $keyboard ?? true, FILTER_VALIDATE_BOOLEAN ) ? 'true' : 'false',
 ];
 
-// Apply style-specific settings
 switch($style ?? 'default') {
     case 'inverted':
         $iframe_params['negative'] = 'true';
@@ -46,22 +40,18 @@ switch($style ?? 'default') {
         break;
 }
 
-// Build iframe URL
 $base_url = 'https://virtualsky.lco.global/embed/index.html';
 $iframe_url = add_query_arg( $iframe_params, $base_url );
 
-// Calculate dynamic height based on zoom level
 $height = 400 + ($zoom * 50);
 ?>
 
-<div class="sgu-star-chart-container" <?php echo $wrapper_attr; ?>>
+<div class="my-4" <?php echo $wrapper_attr; ?>>
 
-    <?php // Display optional title ?>
     <?php if ( $show_title && ! empty( $title ) ) : ?>
-        <h2 class="sgu-star-chart-title"><?php echo esc_html( $title ); ?></h2>
+        <h2 class="text-3xl font-heading font-bold text-cyan-400 mb-4 border-b-2 border-cyan-500 pb-2 mt-0"><?php echo esc_html( $title ); ?></h2>
     <?php endif; ?>
 
-    <?php // Display optional location picker ?>
     <?php if ( $show_location_picker ) : ?>
         <?php 
         $theme_template = locate_template( [
@@ -75,14 +65,7 @@ $height = 400 + ($zoom * 50);
         ?>
     <?php endif; ?>
 
-    <div class="sgu-star-chart-card">
-        <?php 
-        /**
-         * VirtualSky iframe embed
-         * 
-         * Uses Las Cumbres Observatory's hosted VirtualSky instance
-         */
-        ?>
+    <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
         <iframe 
             src="<?php echo esc_url( $iframe_url ); ?>" 
             style="width: 100%; height: <?php echo esc_attr($height); ?>px; border: none;"
@@ -90,13 +73,15 @@ $height = 400 + ($zoom * 50);
             loading="lazy"
         ></iframe>
         
-        <?php // Display location info and usage instructions ?>
-        <p class="sgu-star-chart-info" style="margin-top: 0.5rem; font-size: 0.875rem; color: #888;">
-            Location: <?php echo esc_html($location_name); ?> 
-            (<?php echo number_format($latitude, 2); ?>, <?php echo number_format($longitude, 2); ?>)
-            <br>
-            <em>Click and drag to explore • Use mouse wheel to zoom • Arrow keys to navigate</em>
-        </p>
+        <div class="bg-slate-900 px-6 py-3 border-t border-slate-700">
+            <p class="text-sm text-slate-400">
+                Location: <span class="text-slate-300"><?php echo esc_html($location_name); ?></span>
+                <span class="text-slate-500">(<?php echo number_format($latitude, 2); ?>, <?php echo number_format($longitude, 2); ?>)</span>
+            </p>
+            <p class="text-xs text-slate-500 mt-1">
+                <em>Click and drag to explore • Use mouse wheel to zoom • Arrow keys to navigate</em>
+            </p>
+        </div>
     </div>
 
 </div>
