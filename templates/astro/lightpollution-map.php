@@ -54,12 +54,12 @@ window.sguLightPollutionMaps.push(' . wp_json_encode( [
 
     <div 
         id="<?php echo esc_attr( $map_id ); ?>" 
-        class="rounded-lg overflow-hidden border border-slate-700"
+        class="rounded overflow-hidden border border-slate-700"
         style="height:<?php echo esc_attr( $max_height ); ?>px;"
     ></div>
 
     <div class="mt-4">
-        <div class="h-4 rounded-lg" style="background: linear-gradient(to right, #000000, #0b0b2a, #1a1a4a, #3d3d7a, #7a7a00, #ffaa00, #ffffff);"></div>
+        <div class="h-4 rounded" style="background: linear-gradient(to right, #000000, #0b0b2a, #1a1a4a, #3d3d7a, #7a7a00, #ffaa00, #ffffff);"></div>
         <div class="flex justify-between text-xs text-slate-400 mt-1">
             <span>Dark</span>
             <span>Intense</span>

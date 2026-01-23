@@ -46,7 +46,7 @@ foreach( $data -> posts as $neo ) {
 
     // render the card
     $out[] = <<<HTML
-    <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
+    <div class="bg-slate-800 rounded border border-slate-700 overflow-hidden">
         <div class="bg-slate-900 px-6 py-4 border-b border-slate-700">
             <h3 class="text-lg font-heading font-bold text-cyan-400 flex items-center gap-2">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -101,8 +101,8 @@ foreach( $data -> posts as $neo ) {
                     </ul>
                 </li>
             </ul>
-            <div class="mt-6">
-                <a href="{$link}" class="inline-flex items-center gap-2 px-4 py-2 bg-slate-700 text-slate-200 rounded-lg hover:bg-cyan-600 hover:text-white transition-colors text-sm" target="_blank" rel="noopener noreferrer">
+            <div class="text-right">
+                <a href="{$link}" class="inline-flex items-center gap-2 px-4 py-2 bg-slate-700 text-slate-200 rounded hover:bg-cyan-600 hover:text-white transition-colors text-sm" target="_blank" rel="noopener noreferrer">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                     </svg>
@@ -129,7 +129,7 @@ if( $show_map ) {
     <div class="hidden md:block mt-8">
         <h2 class="text-2xl font-heading font-bold text-cyan-400 mb-4 border-b-2 border-cyan-500 pb-2">NASA Eyes on Asteroids</h2>
         <p class="text-slate-400 mb-4">Fully interactive real-time map of all asteroids and NEO's in our Solar System.</p>
-        <div class="rounded-lg overflow-hidden border border-slate-700">
+        <div class="rounded overflow-hidden border border-slate-700">
             <iframe src="https://eyes.nasa.gov/apps/asteroids/#/asteroids" class="w-full" style="min-height:750px;"></iframe>
         </div>
     </div>

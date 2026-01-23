@@ -28,16 +28,15 @@ if( $media_type == 'image' ) {
         $img = $remote_media;
     }
     $media_html = '<div class="relative">
-        <img src="' . $img . '" alt="' . $title . '" class="w-full h-96 object-cover">
-        <button data-src="' . $img . '" class="absolute bottom-8 right-8 p-2 bg-slate-900/80 text-cyan-400 hover:bg-cyan-600 hover:text-white transition-colors border border-slate-700">
+        <img src="' . $img . '" alt="' . $title . '" class="w-full h-96 object-cover rounded">
+        <button data-src="' . $img . '" class="absolute rounded bottom-8 right-8 p-2 bg-slate-900/80 text-cyan-400 hover:bg-cyan-600 hover:text-white transition-colors border border-slate-700">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/>
             </svg>
         </button>
     </div>';
 } else {
-    // 
-    $media_html = wp_oembed_get( SGU_Static::custom_youtube_embed( $remote_media ) );
+    $media_html = SGU_Static::render_video_media( $remote_media, $title, 'w-full h-96 object-cover rounded' );
 }
 
 ?>
@@ -57,7 +56,7 @@ if( $media_type == 'image' ) {
             <!-- Main Content -->
             <div class="md:col-span-2">
                 
-                <article class="bg-slate-800 border border-slate-700 overflow-hidden">
+                <article class="bg-slate-800 border border-slate-700 rounded">
                     <div class="p-4">
                         <?php echo $media_html; ?>
                         <div class="text-sm text-right text-slate-500 mt-4"><?php echo $date; ?> | Copyright &copy; <?php echo esc_html( $copyright ); ?></div>

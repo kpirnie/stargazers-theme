@@ -28,7 +28,7 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
     <?php endif; ?>
 
     <?php if ( $sun ) : ?>
-        <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
+        <div class="bg-slate-800 rounded border border-slate-700 overflow-hidden">
             <div class="p-6">
                 <div class="space-y-3">
                     <?php if ( $sun->civil_twilight_begin ) : ?>
@@ -90,7 +90,7 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
             </div>
         </div>
     <?php else : ?>
-        <p class="bg-red-900/50 border border-red-700 rounded-lg p-6 text-red-200">Unable to retrieve sun data.</p>
+        <p class="bg-red-900/50 border border-red-700 rounded p-6 text-red-200">Unable to retrieve sun data.</p>
     <?php endif; ?>
 
 </div>

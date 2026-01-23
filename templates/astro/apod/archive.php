@@ -60,21 +60,22 @@ $max_pages = $apods->max_num_pages ?: 1;
                         $link = esc_url( get_permalink( $id ) );
                         $post_meta = ( object ) ( get_post_meta( $id ) ?: [] );
                         
-                        $media = ( function() use( $id, $post_meta ) {
+                        $media = ( function() use( $id, $post_meta, $title ) {
                             $_local = $post_meta -> sgu_apod_local_media[0];
                             $_type = $post_meta -> sgu_apod_local_media_type[0];
                             if( $_type == 'image' && $_local ) {
                                 $_img_id = SGU_Static::get_attachment_id( $_local );
-                                return wp_get_attachment_image_url( $_img_id, 'thumbnail' ) ?: $_local;
+                                $img_src = wp_get_attachment_image_url( $_img_id, 'thumbnail' ) ?: $_local;
+                                return '<img src="' . $img_src . '" alt="' . $title . '" class="w-full h-full object-cover rounded">';
                             }
-                            return $post_meta -> sgu_apod_original_media[0];
+                            return SGU_Static::render_video_media( $post_meta -> sgu_apod_orignal_media[0], $title, 'rounded', false );
                         })();
                     ?>
-                    <article class="bg-slate-800 border border-slate-700 p-4 flex gap-4">
+                    <article class="bg-slate-800 border border-slate-700 p-4 flex gap-4 rounded">
                         <div class="w-24 h-24 flex-shrink-0">
                             <?php if( $media ) : ?>
                             <a href="<?php echo $link; ?>">
-                                <img src="<?php echo esc_url( $media ); ?>" alt="<?php echo $title; ?>" class="w-full h-full object-cover">
+                                <?php echo $media; ?>
                             </a>
                             <?php endif; ?>
                         </div>

@@ -42,7 +42,7 @@ if( $latest_alerts ) {
 
         // open the card
         $out[] = <<<HTML
-        <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
+        <div class="bg-slate-800 rounded border border-slate-700 overflow-hidden">
             <div class="bg-slate-900 px-6 py-4 border-b border-slate-700">
                 <h3 class="text-xl mt-3 font-bold text-cyan-400">$section_title</h3>
             </div>
@@ -61,8 +61,8 @@ if( $latest_alerts ) {
                 return <<<HTML
                     <p class="text-slate-300 mb-4">$trimd_content</p>
                     <!--<img class="brightness-100 dark:brightness-50 object-contain md:object-cover rounded-md" />-->
-                    <button data-src="//services.swpc.noaa.gov/images/animations/geospace/velocity/latest.png" class="inline-block px-6 py-2 bg-slate-600 hover:bg-slate-500 text-white rounded-lg transition-colors">Latest Image</button>
-                    <a class="inline-block px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg transition-colors" href="$permalink">Read More</a>
+                    <button data-src="//services.swpc.noaa.gov/images/animations/geospace/velocity/latest.png" class="inline-block px-4 py-2 mx-1 bg-slate-600 hover:bg-slate-500 text-white rounded transition-colors text-sm">Latest Image</button>
+                    <a class="inline-block px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded transition-colors mx-1 text-sm" href="$permalink">Read More</a>
                 HTML;
             } )( ),
             // solar flare alerts
@@ -78,8 +78,8 @@ if( $latest_alerts ) {
                     <li><strong class="text-slate-200">Ends:</strong> $edate</li>
                     <li><strong class="text-slate-200">Class:</strong> $cl</li>
                 </ul>
-                <button data-src="//sdo.gsfc.nasa.gov/assets/img/latest/latest_1024_0171.jpg" class="inline-block px-6 py-2 bg-slate-600 hover:bg-slate-500 text-white rounded-lg transition-colors" href="">Latest Image</button>
-                <a class="inline-block px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg transition-colors" href="$permalink">Read More</a>
+                <button data-src="//sdo.gsfc.nasa.gov/assets/img/latest/latest_1024_0171.jpg" class="inline-block px-4 py-2 text-sm bg-slate-600 hover:bg-slate-500 text-white rounded transition-colors mx-1" href="">Latest Image</button>
+                <a class="inline-block px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded transition-colors mx-1 text-sm" href="$permalink">Read More</a>
                 HTML;
             } )( ),
             // coronal mass ejection alerts
@@ -95,8 +95,8 @@ if( $latest_alerts ) {
                         <li><strong class="text-slate-200">Catalog:</strong> $catalog</li>
                         <li><strong class="text-slate-200">Source:</strong> $source</li>
                     </ul>
-                    <button data-src="//services.swpc.noaa.gov/images/animations/lasco-c2/latest.jpg" class="inline-block px-6 py-2 bg-slate-600 hover:bg-slate-500 text-white rounded-lg transition-colors" href="">Latest Image</button>
-                    <a class="inline-block px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg transition-colors" href="$permalink">Read More</a>
+                    <button data-src="//services.swpc.noaa.gov/images/animations/lasco-c2/latest.jpg" class="inline-block px-4 text-sm py-2 bg-slate-600 hover:bg-slate-500 text-white rounded transition-colors mx-1" href="">Latest Image</button>
+                    <a class="inline-block px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded transition-colors mx-1 text-sm" href="$permalink">Read More</a>
                 HTML;
             } )( ),
             // space weather alerts
@@ -106,8 +106,8 @@ if( $latest_alerts ) {
                 $permalink = get_permalink( get_page_by_path( 'astronomy-information/latest-alerts/space-weather-alerts' ) -> ID ?? 0 );
                 return <<<HTML
                 <p class="text-slate-300 mb-4">$message</p>
-                <button data-src="//services.swpc.noaa.gov/images/swx-overview-large.gif" class="inline-block px-6 py-2 bg-slate-600 hover:bg-slate-500 text-white rounded-lg transition-colors" href="">Latest Image</button>
-                <a class="inline-block px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg transition-colors" href="$permalink">Read More</a>
+                <button data-src="//services.swpc.noaa.gov/images/swx-overview-large.gif" class="inline-block px-4 py-2 bg-slate-600 text-sm hover:bg-slate-500 text-white rounded transition-colors mx-1" href="">Latest Image</button>
+                <a class="inline-block px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded transition-colors mx-1 text-sm" href="$permalink">Read More</a>
                 HTML;
             } )( ),
 

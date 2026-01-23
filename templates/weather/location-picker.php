@@ -28,7 +28,7 @@ $compact_class = $compact ? 'sgu-weather-location-compact' : '';
 
     <!-- Current Location Display -->
 <div class="sgu-weather-has-location" style="<?php echo ! $has_location ? 'display: none;' : ''; ?>">
-    <div class="flex items-center justify-between bg-slate-800 rounded-lg border border-slate-700 px-4 py-3">
+    <div class="flex items-center justify-between bg-slate-800 rounded border border-slate-700 px-4 py-3">
         <div class="flex items-center gap-2 text-slate-200">
             <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
@@ -46,13 +46,13 @@ $compact_class = $compact ? 'sgu-weather-location-compact' : '';
             </span>
         </div>
         <div class="flex items-center gap-2">
-            <button type="button" class="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-700 text-slate-300 text-sm rounded-lg hover:bg-cyan-600 hover:text-white transition-colors sgu-weather-change-location">
+            <button type="button" class="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-700 text-slate-300 text-sm rounded hover:bg-cyan-600 hover:text-white transition-colors sgu-weather-change-location">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                 </svg>
                 Change Location
             </button>
-            <button type="button" class="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-800 border border-slate-700 text-slate-300 text-sm font-medium rounded-lg hover:bg-cyan-600 hover:text-white hover:border-cyan-500 transition-colors sgu-weather-refresh">
+            <button type="button" class="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-800 border border-slate-700 text-slate-300 text-sm font-medium rounded hover:bg-cyan-600 hover:text-white hover:border-cyan-500 transition-colors sgu-weather-refresh">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
                 </svg>
@@ -64,13 +64,13 @@ $compact_class = $compact ? 'sgu-weather-location-compact' : '';
 
     <!-- Location Prompt -->
     <div class="sgu-weather-location-prompt" style="<?php echo $has_location ? 'display: none;' : ''; ?>">
-        <div class="bg-slate-800 rounded-lg border border-slate-700 p-6">
+        <div class="bg-slate-800 rounded border border-slate-700 p-6">
             
             <p class="text-slate-400 mb-4">Set your location to see local weather data.</p>
 
             <!-- Geolocation Button -->
             <div class="mb-4">
-                <button type="button" class="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-500 transition-colors sgu-weather-geolocate">
+                <button type="button" class="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-cyan-600 text-white font-medium rounded hover:bg-cyan-500 transition-colors sgu-weather-geolocate">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -89,14 +89,14 @@ $compact_class = $compact ? 'sgu-weather-location-compact' : '';
                     <label class="block text-sm font-medium text-slate-300 mb-2" for="sgu-weather-zip">Enter ZIP Code</label>
                     <div class="flex gap-2">
                         <input type="text" 
-                               class="flex-1 px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 sgu-weather-zip-input" 
+                               class="flex-1 px-4 py-2 bg-slate-900 border border-slate-700 rounded text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 sgu-weather-zip-input" 
                                id="sgu-weather-zip"
                                placeholder="12345"
                                maxlength="5"
                                pattern="[0-9]{5}"
                                inputmode="numeric"
                                required>
-                        <button type="submit" class="px-6 py-2 bg-slate-700 text-slate-200 font-medium rounded-lg hover:bg-cyan-600 hover:text-white transition-colors">
+                        <button type="submit" class="px-6 py-2 bg-slate-700 text-slate-200 font-medium rounded hover:bg-cyan-600 hover:text-white transition-colors">
                             Find
                         </button>
                     </div>

@@ -30,7 +30,7 @@ get_header();
                 <?php get_search_form(); ?>
             </div>
             
-            <a href="<?php echo esc_url(home_url('/')); ?>" class="inline-block px-8 py-3 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg transition-colors text-lg">
+            <a href="<?php echo esc_url(home_url('/')); ?>" class="inline-block px-8 py-3 bg-cyan-600 hover:bg-cyan-500 text-white rounded transition-colors text-lg">
                 <?php _e('Return to Home Base', 'stargazers'); ?>
             </a>
         </div>

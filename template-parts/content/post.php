@@ -10,7 +10,7 @@ $is_archive = !is_singular();
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class($is_archive ? 'bg-slate-800 border border-slate-700 overflow-hidden rounded-lg' : 'container mx-auto px-4 py-8 mb-12 bg-slate-800 rounded-lg border border-slate-700'); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class($is_archive ? 'bg-slate-800 border border-slate-700 overflow-hidden rounded' : 'container mx-auto px-4 py-8 mb-12 bg-slate-800 rounded border border-slate-700'); ?>>
     
     <?php if ($is_archive) : ?>
 
@@ -107,7 +107,7 @@ $is_archive = !is_singular();
         </header>
         
         <?php if (has_post_thumbnail()) : ?>
-            <div class="entry-thumbnail mb-8 rounded-lg overflow-hidden border border-slate-700">
+            <div class="entry-thumbnail mb-8 rounded overflow-hidden border border-slate-700">
                 <?php 
                 the_post_thumbnail('large', array('class' => 'w-full h-96 object-cover'));
                 ?>

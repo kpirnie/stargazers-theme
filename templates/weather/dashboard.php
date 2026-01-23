@@ -33,7 +33,7 @@ $is_dash = true;
     <?php endif; ?>
 
     <?php if( ! $has_location ) : ?>
-        <div class="sgu-weather-no-location bg-cyan-900/50 border border-cyan-700 rounded-lg p-4 text-cyan-200 mt-6">
+        <div class="sgu-weather-no-location bg-cyan-900/50 border border-cyan-700 rounded p-4 text-cyan-200 mt-6">
             <p>Please set your location above to view weather data.</p>
         </div>
     <?php else : ?>

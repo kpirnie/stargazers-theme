@@ -22,7 +22,7 @@ if( ! $current_weather ) {
     ?>
     <!-- Weather Content -->
     <div class="sgu-weather-content">
-        <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
+        <div class="bg-slate-800 rounded border border-slate-700 overflow-hidden">
             <?php if( $show_title && ! $is_dash ) { ?>
                 <div class="bg-slate-900 px-6 py-4 border-b border-slate-700">
                     

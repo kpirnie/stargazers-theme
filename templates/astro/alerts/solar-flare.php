@@ -49,7 +49,7 @@ foreach( $data -> posts as $flare ) {
 
     // create the card
     $out[] = <<<HTML
-    <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
+    <div class="bg-slate-800 rounded border border-slate-700 overflow-hidden">
         <div class="bg-slate-900 px-6 py-4 border-b border-slate-700">
             <h3 class="text-xl mt-3 font-bold text-cyan-400">$title</h3>
         </div>
@@ -62,7 +62,7 @@ foreach( $data -> posts as $flare ) {
                 <li><strong class="text-slate-200">Source:</strong> $fsource</li>
                 <li><strong class="text-slate-200">Region:</strong> $fregion</li>
             </ul>
-            <div class="border border-slate-700 rounded-lg overflow-hidden">
+            <div class="border border-slate-700 rounded overflow-hidden">
                 <button 
                     class="w-full px-4 py-3 bg-slate-900 text-cyan-400 font-semibold text-left flex justify-between items-center hover:bg-slate-800 transition-colors"
                     data-accordion-trigger="$accordion_id">
@@ -75,7 +75,12 @@ foreach( $data -> posts as $flare ) {
                     $finstruments
                 </div>
             </div>
-            <a class="inline-block mt-6 px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg transition-colors float-right" href="$flink" target="_blank">More Info</a>
+            <a class="inline-flex text-sm gap-2 items-center mt-6 px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded transition-colors float-right" href="$flink" target="_blank">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg> 
+                More Info
+            </a>
             <div class="clear-both"></div>
         </div>
     </div>

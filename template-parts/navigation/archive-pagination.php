@@ -33,7 +33,7 @@ if ( $pagination ) :
         <div class="nav-links flex flex-wrap justify-center items-center gap-2">
             
             <?php if ( $current_page > 1 ) : ?>
-                <a href="<?php echo esc_url( get_pagenum_link( 1 ) ); ?>" class="px-4 py-2 bg-slate-800 text-slate-200 rounded-lg hover:bg-cyan-600 hover:text-white transition-colors border border-slate-700" title="First Page">
+                <a href="<?php echo esc_url( get_pagenum_link( 1 ) ); ?>" class="px-4 rounded py-2 bg-slate-800 text-slate-200 rounded hover:bg-cyan-600 hover:text-white transition-colors border border-slate-700" title="First Page">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"></path>
                     </svg>
@@ -44,13 +44,13 @@ if ( $pagination ) :
                 if ( strpos( $page, 'current' ) !== false ) {
                     $page = preg_replace(
                         '/class=["\']([^"\']*page-numbers[^"\']*)["\']/',
-                        'class="px-4 py-2 bg-cyan-600 text-white rounded-lg border border-cyan-500"',
+                        'class="px-4 rounded py-2 bg-cyan-600 text-white rounded border border-cyan-500"',
                         $page
                     );
                 } else {
                     $page = preg_replace(
                         '/class=["\']([^"\']*page-numbers[^"\']*)["\']/',
-                        'class="px-4 py-2 bg-slate-800 text-slate-200 rounded-lg hover:bg-cyan-600 hover:text-white transition-colors border border-slate-700"',
+                        'class="px-4 rounded py-2 bg-slate-800 text-slate-200 rounded hover:bg-cyan-600 hover:text-white transition-colors border border-slate-700"',
                         $page
                     );
                 }
@@ -58,7 +58,7 @@ if ( $pagination ) :
             endforeach; ?>
 
             <?php if ( $current_page < $total_pages ) : ?>
-                <a href="<?php echo esc_url( get_pagenum_link( $total_pages ) ); ?>" class="px-4 py-2 bg-slate-800 text-slate-200 rounded-lg hover:bg-cyan-600 hover:text-white transition-colors border border-slate-700" title="Last Page">
+                <a href="<?php echo esc_url( get_pagenum_link( $total_pages ) ); ?>" class="px-4 rounded py-2 bg-slate-800 text-slate-200 rounded hover:bg-cyan-600 hover:text-white transition-colors border border-slate-700" title="Last Page">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
                     </svg>

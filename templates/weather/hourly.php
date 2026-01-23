@@ -20,12 +20,12 @@ if( !$hourly_forecast ) {
     <div class="sgu-weather-content">
         
         <?php if( ! $has_location ) : ?>
-            <div class="sgu-weather-no-location bg-cyan-900/50 border border-cyan-700 rounded-lg p-4 text-cyan-200">
+            <div class="sgu-weather-no-location bg-cyan-900/50 border border-cyan-700 rounded p-4 text-cyan-200">
                 <p>Please set your location to view the forecast.</p>
             </div>
         <?php else : ?>
 
-            <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden mt-6">
+            <div class="bg-slate-800 rounded border border-slate-700 overflow-hidden mt-6">
                 <?php if( $show_title && ! $is_dash ) { ?>
                 <div class="bg-slate-900 px-6 py-4 border-b border-slate-700">
                     <h3 class="text-xl mt-3 font-bold text-cyan-400 flex items-center gap-2">
@@ -52,7 +52,7 @@ if( !$hourly_forecast ) {
                             $wind_deg = $hour['wind_deg'] ?? 0;
                             $wind_dir = SGU_Static::wind_direction_to_compass( $wind_deg );
                             ?>
-                            <div class="text-center bg-slate-900 rounded-lg p-3 min-w-[70px]">
+                            <div class="text-center bg-slate-900 rounded p-3 min-w-[70px]">
                                 <div class="text-xs text-slate-400"><?php echo esc_html( $hour_time ); ?></div>
                                 <div class="text-2xl my-2">
                                     <?php echo SGU_Static::get_weather_emoji( $hour_icon ); ?>

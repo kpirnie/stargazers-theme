@@ -14,10 +14,9 @@ get_header();
         
         <header class="bg-slate-900 border-b border-slate-800">
             <div class="container mx-auto px-4 py-6">
-                <?php
-                the_archive_title('<h1 class="text-4xl font-heading font-bold text-cyan-400">', '</h1>');
-                the_archive_description('<div class="text-slate-400 mt-2">', '</div>');
-                ?>
+                <h1 class="text-4xl font-heading font-bold text-cyan-400">
+                    <?php echo our_title( ); ?>
+                </h1>
             </div>
         </header>
 

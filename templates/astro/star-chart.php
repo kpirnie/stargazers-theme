@@ -65,7 +65,7 @@ $height = 400 + ($zoom * 50);
         ?>
     <?php endif; ?>
 
-    <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
+    <div class="bg-slate-800 rounded border border-slate-700 overflow-hidden">
         <iframe 
             src="<?php echo esc_url( $iframe_url ); ?>" 
             style="width: 100%; height: <?php echo esc_attr($height); ?>px; border: none;"

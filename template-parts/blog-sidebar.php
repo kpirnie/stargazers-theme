@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
 <div class="sticky top-[10rem] space-y-6">
     
     <!-- Search -->
-    <div class="bg-slate-800 border border-slate-700 p-4 rounded-lg">
+    <div class="bg-slate-800 border border-slate-700 p-4 rounded">
         <h3 class="text-lg font-heading font-bold text-cyan-400 mb-4 pb-2 border-b border-slate-700">Search Blog</h3>
         <?php get_search_form(); ?>
     </div>
@@ -27,7 +27,7 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
     
     if ( $categories ) :
     ?>
-    <div class="bg-slate-800 border border-slate-700 p-4 rounded-lg">
+    <div class="bg-slate-800 border border-slate-700 p-4 rounded">
         <h3 class="text-lg font-heading font-bold text-cyan-400 mb-4 pb-2 border-b border-slate-700">Categories</h3>
         <ul class="space-y-2">
             <?php foreach ( $categories as $category ) : ?>
@@ -53,7 +53,7 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
     
     if ( $tags ) :
     ?>
-    <div class="bg-slate-800 border border-slate-700 p-4 rounded-lg">
+    <div class="bg-slate-800 border border-slate-700 p-4 rounded">
         <h3 class="text-lg font-heading font-bold text-cyan-400 mb-4 pb-2 border-b border-slate-700">Popular Tags</h3>
         <div class="flex flex-wrap gap-2">
             <?php foreach ( $tags as $tag ) : ?>
@@ -77,7 +77,7 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
     
     if ( $recent_posts->have_posts() ) :
     ?>
-    <div class="bg-slate-800 border border-slate-700 p-4 rounded-lg">
+    <div class="bg-slate-800 border border-slate-700 p-4 rounded">
         <h3 class="text-lg font-heading font-bold text-cyan-400 mb-4 pb-2 border-b border-slate-700">Recent Posts</h3>
         <ul class="space-y-3">
             <?php while ( $recent_posts->have_posts() ) : $recent_posts->the_post(); ?>
@@ -110,7 +110,7 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
     ) );
 
     if ( $archives ) : ?>
-    <div class="bg-slate-800 border border-slate-700 p-4 rounded-lg">
+    <div class="bg-slate-800 border border-slate-700 p-4 rounded">
         <h3 class="text-lg font-heading font-bold text-cyan-400 mb-4 pb-2 border-b border-slate-700">Archives</h3>
         <ul class="space-y-2 text-sm">
             <?php

@@ -48,7 +48,7 @@ add_action('wp_enqueue_scripts', 'stargazers_enqueue_assets');
 class Stargazers_Walker_Nav_Menu extends Walker_Nav_Menu {
     function start_lvl(&$output, $depth = 0, $args = null) {
         $indent = str_repeat("\t", $depth);
-        $output .= "\n$indent<ul class=\"submenu absolute left-0 mt-2 w-48 bg-slate-800 border border-slate-700 rounded-lg shadow-lg z-50\">\n";
+        $output .= "\n$indent<ul class=\"submenu absolute left-0 mt-2 w-48 bg-slate-800 border border-slate-700 rounded shadow-lg z-50\">\n";
     }
 
     function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
@@ -169,4 +169,69 @@ function modify_oembed_iframe($html, $url, $attr, $post_id) {
     // Add class to iframe elements
     $html = str_replace('<iframe', '<iframe class="w-full h-96 aspect-video"', $html);   
     return $html;
+}
+
+/** 
+ * our_title
+ * 
+ * This method is utilized for formatting our page titles properly
+ * 
+ * @since 8.0
+ * @access private
+ * @static
+ * @author Kevin Pirnie <me@kpirnie.com>
+ * @package US Star Gazers
+ * 
+ * @return string The proper page title
+ * 
+*/
+function our_title( ) : string {
+
+    // is this the main articles page
+    if( is_home( ) ) {
+
+        // set the title
+        return __( 'Articles', 'sgu' );
+
+    }
+
+    // is this a category page?
+    if( is_category( ) ) {
+
+        // return the category
+        return __( single_cat_title( '', false ) . ' Articles', 'sgu' );
+    }
+
+    // is this a tag page?
+    if( is_tag( ) ) {
+
+        // return the category
+        return __( single_tag_title( '', false ) . ' Articles', 'sgu' );
+    }
+
+    // is this a date archive page?
+    if( is_date( ) ) {
+
+        // return the date
+        return __( get_the_archive_title( '', false ) . ' Archives', 'sgu' );
+    }
+
+    // if we're on a single post or page
+    if( is_single( ) || is_page( ) ) {
+
+        // return the single title
+        return __( get_the_title( ), 'sgu' );
+    }
+
+    // if we're searching
+    if( is_search( ) ) {
+
+        // return a title
+        return __( 'Top Search Results', 'sgu' );
+
+    }
+
+    // otherwise just return the site's title
+    return get_bloginfo( 'name' );
+    
 }

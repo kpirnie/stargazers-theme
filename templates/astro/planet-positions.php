@@ -28,11 +28,11 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
     <?php endif; ?>
 
     <?php if ( ! $has_credentials ) : ?>
-        <div class="bg-amber-900/50 border border-amber-700 rounded-lg p-6 text-amber-200">
+        <div class="bg-amber-900/50 border border-amber-700 rounded p-6 text-amber-200">
             <p>Configure AstronomyAPI credentials to display planet positions.</p>
         </div>
     <?php elseif ( ! empty( $planets ) ) : ?>
-        <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
+        <div class="bg-slate-800 rounded border border-slate-700 overflow-hidden">
             <div class="divide-y divide-slate-700">
                 <?php foreach ( $planets as $planet ) : ?>
                     <div class="px-6 py-4 flex items-center gap-4 <?php echo $planet->visible ? 'bg-slate-800' : 'bg-slate-900'; ?>">
@@ -57,7 +57,7 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
             </div>
         </div>
     <?php else : ?>
-        <p class="bg-red-900/50 border border-red-700 rounded-lg p-6 text-red-200">Unable to retrieve planet data.</p>
+        <p class="bg-red-900/50 border border-red-700 rounded p-6 text-red-200">Unable to retrieve planet data.</p>
     <?php endif; ?>
 
 </div>

@@ -33,3 +33,5 @@ service php8.4-fpm restart && service nginx reload
 
 # clear out our redis cache
 redis-cli flushall
+
+rm -rf $APP_PATH/node_modules

@@ -25,14 +25,14 @@ if( ! $use_noaa ) {
     <div class="sgu-weather-content">
         
         <?php if( ! $has_location ) : ?>
-            <div class="sgu-weather-no-location bg-cyan-900/50 border border-cyan-700 rounded-lg p-4 text-cyan-200">
+            <div class="sgu-weather-no-location bg-cyan-900/50 border border-cyan-700 rounded p-4 text-cyan-200">
                 <p>Please set your location to view the forecast.</p>
             </div>
         <?php else : ?>
 
             <!-- NOAA Detailed Forecast -->
             <?php if( $use_noaa && $noaa_forecast && ! empty( $noaa_forecast -> periods ) ) : ?>
-                <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden mb-6">
+                <div class="bg-slate-800 rounded border border-slate-700 overflow-hidden mb-6">
                     <?php if( $show_title && ! $is_dash ) { ?>
                     <div class="bg-slate-900 px-6 py-4 border-b border-slate-700">
                         <h3 class="text-xl mt-3 font-bold text-cyan-400 flex items-center gap-2">
@@ -56,7 +56,7 @@ if( ! $use_noaa ) {
                                 <?php if( ! empty( $period['icon'] ) ) : ?>
                                 <img src="<?php echo esc_url( $period['icon'] ); ?>" 
                                     alt="<?php echo esc_attr( $period['shortForecast'] ); ?>"
-                                    class="w-16 h-16 rounded-lg bg-slate-900 flex-shrink-0 mt-1">
+                                    class="w-16 h-16 rounded bg-slate-900 flex-shrink-0 mt-1">
                                 <?php endif; ?>
                                 <div class="flex-grow min-w-0">
                                     <h4 class="font-bold text-slate-200 mt-0">

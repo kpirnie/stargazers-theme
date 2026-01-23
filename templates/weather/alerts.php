@@ -49,11 +49,11 @@ $severity_badges = [
     <div class="sgu-weather-content">
         
         <?php if( ! $has_location ) : ?>
-            <div class="sgu-weather-no-location bg-cyan-900/50 border border-cyan-700 rounded-lg p-4 text-cyan-200">
+            <div class="sgu-weather-no-location bg-cyan-900/50 border border-cyan-700 rounded p-4 text-cyan-200">
                 <p>Please set your location to view weather alerts.</p>
             </div>
         <?php elseif( empty( $alerts ) ) : ?>
-            <div class="bg-green-900/50 border border-green-700 rounded-lg p-4 text-green-200 flex items-center gap-3">
+            <div class="bg-green-900/50 border border-green-700 rounded p-4 text-green-200 flex items-center gap-3">
                 <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
@@ -76,7 +76,7 @@ $severity_badges = [
                     $sender = $alert -> senderName ?? 'National Weather Service';
                     $accordion_id = 'alert-' . $index . '-' . uniqid();
                 ?>
-                <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
+                <div class="bg-slate-800 rounded border border-slate-700 overflow-hidden">
                     <button 
                         class="w-full px-6 py-4 bg-slate-900 text-left flex justify-between items-center hover:bg-slate-800 transition-colors"
                         data-accordion-trigger="<?php echo esc_attr( $accordion_id ); ?>"
@@ -101,7 +101,7 @@ $severity_badges = [
                         <div class="p-6 space-y-4">
                             
                             <?php if( $headline ) : ?>
-                            <div class="<?php echo esc_attr( $color_class ); ?> border rounded-lg p-4">
+                            <div class="<?php echo esc_attr( $color_class ); ?> border rounded p-4">
                                 <strong><?php echo esc_html( $headline ); ?></strong>
                             </div>
                             <?php endif; ?>
@@ -120,7 +120,7 @@ $severity_badges = [
                             <?php if( $description ) : ?>
                             <div>
                                 <h5 class="text-slate-200 font-semibold mb-2">Description</h5>
-                                <pre class="whitespace-pre-wrap font-mono text-sm text-slate-300 bg-slate-900 p-4 rounded-lg border border-slate-700 overflow-x-auto"><?php echo esc_html( $description ); ?></pre>
+                                <pre class="whitespace-pre-wrap font-mono text-sm text-slate-300 bg-slate-900 p-4 rounded border border-slate-700 overflow-x-auto"><?php echo esc_html( $description ); ?></pre>
                             </div>
                             <?php endif; ?>
 
@@ -132,7 +132,7 @@ $severity_badges = [
                                     </svg>
                                     Instructions
                                 </h5>
-                                <div class="bg-yellow-900/30 border border-yellow-700 rounded-lg p-4 text-yellow-200">
+                                <div class="bg-yellow-900/30 border border-yellow-700 rounded p-4 text-yellow-200">
                                     <?php echo nl2br( esc_html( $instruction ) ); ?>
                                 </div>
                             </div>

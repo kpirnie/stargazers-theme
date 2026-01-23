@@ -22,14 +22,14 @@ if( ! $noaa_forecast ) {
     <div class="sgu-weather-content">
         
         <?php if( ! $has_location ) : ?>
-            <div class="sgu-weather-no-location bg-cyan-900/50 border border-cyan-700 rounded-lg p-4 text-cyan-200">
+            <div class="sgu-weather-no-location bg-cyan-900/50 border border-cyan-700 rounded p-4 text-cyan-200">
                 <p>Please set your location to view the 7-day forecast.</p>
             </div>
         <?php else : ?>
 
             <!-- NOAA Extended Forecast -->
             <?php if( $noaa_forecast && ! empty( $noaa_forecast -> periods ) ) : ?>
-                <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
+                <div class="bg-slate-800 rounded border border-slate-700 overflow-hidden">
                     <?php if( $show_title && ! $is_dash ) { ?>
                     <div class="bg-slate-900 px-6 py-4 border-b border-slate-700">
                         <h3 class="text-xl mt-3 font-bold text-cyan-400 flex items-center gap-2">
@@ -57,7 +57,7 @@ if( ! $noaa_forecast ) {
                         <!-- Day Row -->
                         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3 mb-3">
                             <?php foreach( $day_periods as $period ) : ?>
-                                <div class="bg-slate-900 rounded-lg p-4 text-center flex flex-col">
+                                <div class="bg-slate-900 rounded p-4 text-center flex flex-col">
                                     
                                     <!-- Period Name -->
                                     <div class="font-medium text-slate-200 text-sm mb-2">
@@ -99,7 +99,7 @@ if( ! $noaa_forecast ) {
                         <!-- Night Row -->
                         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3">
                             <?php foreach( $night_periods as $period ) : ?>
-                                <div class="bg-slate-950 rounded-lg p-4 text-center flex flex-col border border-slate-800">
+                                <div class="bg-slate-950 rounded p-4 text-center flex flex-col border border-slate-800">
                                     
                                     <!-- Period Name -->
                                     <div class="font-medium text-slate-300 text-sm mb-2">

@@ -24,11 +24,11 @@ $days_to_show = $days_to_show ?? 7;
     <div class="sgu-weather-content">
         
         <?php if( ! $has_location ) : ?>
-            <div class="sgu-weather-no-location bg-cyan-900/50 border border-cyan-700 rounded-lg p-4 text-cyan-200">
+            <div class="sgu-weather-no-location bg-cyan-900/50 border border-cyan-700 rounded p-4 text-cyan-200">
                 <p>Please set your location to view the 7-day forecast.</p>
             </div>
         <?php elseif( ! $forecast ) : ?>
-            <div class="sgu-weather-error bg-amber-900/50 border border-amber-700 rounded-lg p-4 text-amber-200">
+            <div class="sgu-weather-error bg-amber-900/50 border border-amber-700 rounded p-4 text-amber-200">
                 <p>Unable to retrieve forecast data. Please try again later.</p>
             </div>
         <?php else : ?>
@@ -36,7 +36,7 @@ $days_to_show = $days_to_show ?? 7;
             <!-- Open-Meteo Daily Forecast Grid -->
             <?php if( isset( $forecast -> daily ) && ! empty( $forecast -> daily ) ) : ?>
 
-                <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden my-6">
+                <div class="bg-slate-800 rounded border border-slate-700 overflow-hidden my-6">
                     <?php if( $show_title && ! $is_dash ) { ?>
                         <div class="bg-slate-900 px-6 py-4 border-b border-slate-700">
                             <h3 class="text-xl mt-3 font-bold text-cyan-400 flex items-center gap-2">
@@ -66,7 +66,7 @@ $days_to_show = $days_to_show ?? 7;
                                 // Highlight today
                                 $is_today = ( date( 'Y-m-d', $day['dt'] ) === date( 'Y-m-d' ) );
                                 ?>
-                                <div class="text-center p-3 rounded-lg <?php echo $is_today ? 'bg-cyan-900/50 border border-cyan-700' : 'bg-slate-900'; ?>">
+                                <div class="text-center p-3 rounded <?php echo $is_today ? 'bg-cyan-900/50 border border-cyan-700' : 'bg-slate-900'; ?>">
                                     <div class="font-bold <?php echo $is_today ? 'text-cyan-400' : 'text-slate-200'; ?>">
                                         <?php echo $is_today ? 'Today' : esc_html( $day_name ); ?>
                                     </div>

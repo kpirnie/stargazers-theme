@@ -28,7 +28,7 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
     <?php endif; ?>
 
     <?php if ( $moon ) : ?>
-        <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
+        <div class="bg-slate-800 rounded border border-slate-700 overflow-hidden">
             <?php if ( $moon_phase ) : ?>
                 <div class="bg-slate-900 px-6 py-4 border-b border-slate-700">
                     <div class="flex items-center justify-between">
@@ -80,7 +80,7 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
             </div>
         </div>
     <?php else : ?>
-        <p class="bg-red-900/50 border border-red-700 rounded-lg p-6 text-red-200">Unable to retrieve moon data.</p>
+        <p class="bg-red-900/50 border border-red-700 rounded p-6 text-red-200">Unable to retrieve moon data.</p>
     <?php endif; ?>
 
 </div>

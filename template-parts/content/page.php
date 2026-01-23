@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed' );
     </header>
     
     <?php if (has_post_thumbnail()) : ?>
-        <div class="entry-thumbnail mb-8 rounded-lg overflow-hidden border border-slate-700">
+        <div class="entry-thumbnail mb-8 rounded overflow-hidden border border-slate-700">
             <?php the_post_thumbnail('large', array('class' => 'w-full h-auto parallax')); ?>
         </div>
     <?php endif; ?>
